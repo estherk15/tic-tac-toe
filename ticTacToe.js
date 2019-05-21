@@ -1,7 +1,8 @@
 const board = require('./board.js')
 const game = require('./game.js')
 const readline = require('readline') //Node.js CLI
-const grid = Array(9).fill("") //grid = ["", "", "", "", "", "", "", "", ""]
+let currentToken
+
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -18,7 +19,7 @@ const multiPlayer = () => {
     if (!game.validateNumbers(answer)){
       multiPlayer()
     } else {
-      console.log("Stop here")
+      game.validatePlay(answer)
     }
   })
 }

@@ -1,4 +1,4 @@
-
+const grid = Array(9).fill("") //grid = ["", "", "", "", "", "", "", "", ""]
 //The board array that is passed into the function is shown.
 const displayBoard = (grid) => {
   const row1 = ` ${grid[0]} | ${grid[1]} | ${grid[2]} `
@@ -15,4 +15,5 @@ const displayBoard = (grid) => {
 
 module.exports = {
   displayBoard,
+  grid,
  }

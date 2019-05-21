@@ -26,10 +26,18 @@ const assert = require('assert')
 //validates that numbers are entered
 it('runs when a number is entered', () => {
   assert.equal(game.validateNumbers(2), true)
-})
-
-it('runs when a number is entered', () => {
   assert.equal(game.validateNumbers("single"), false)
 })
 
-//when it's multiplayer, 
+
+//when you make a move, the square you choose should be empty
+it('only allows the play if selected position is empty', () => {
+  board.grid = ["O", "", "X", "", "X", "", "O", "", "X",]
+  assert.equal(game.validatePlay(1), false)
+  assert.equal(game.validatePlay(2), true)
+  assert.equal(game.validatePlay(9), false)
+  assert.equal(game.validatePlay(4), true)
+})
+
+//Player can only pick a number within range of grid size
+// it('runs when a number within ')
