@@ -9,7 +9,7 @@ const validateNumbers = (num) => {//player can only enter numbers
 }
 
 const validatePlay = (num) => {//player can only pick a number that is not already picked
-  if(board.grid[num-1] === ""){
+  if((board.grid[num-1] === "") && 0 < num <= board.grid.length) {
     return true
   }
   return false

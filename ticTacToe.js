@@ -18,8 +18,11 @@ const multiPlayer = () => {
   rl.question('Play your move by entering the grid number: \n', answer => {
     if (!game.validateNumbers(answer)){
       multiPlayer()
+    } else if (!game.validatePlay(answer)){
+      console.log('**Please select an empty square**')
+      multiplayer()
     } else {
-      game.validatePlay(answer)
+      //next function will replace the grid of that selected square with either an x or o
     }
   })
 }
