@@ -8,6 +8,10 @@ const validateNumbers = (num) => {//player can only enter numbers
   return true
 }
 
+const validatePlay = (num) => {//player can only pick a number that is not already picked
+
+}
+
 module.exports = {
   validateNumbers,
 }

@@ -13,16 +13,29 @@ console.log(`
   Version: 1.0.0
   `)
 
-rl.question(`Please select:
+const multiPlayer = () => {
+  rl.question('Play your move by entering the grid number: \n', answer => {
+    if (!game.validateNumbers(answer)){
+      multiPlayer()
+    } else {
+      console.log("Stop here")
+    }
+  })
+}
+
+const player = rl.question(`Please select:
   [1] Single player
   [2] Multi - player
 `, answer => {
   if(!game.validateNumbers(answer)){
     console.log('Please restart the program and only enter a number value')
     rl.close()
+  } else if(answer == 2) {
+    console.log('Player 1 = X  ||  Player 2 = O')
+    multiPlayer()
+
   } else {
-    if(answer == 1) {
-      console.log()
-    }
+    console.log('Player 1 = X  ||  Player 2 = O')
+    singlePlayer()
   }
 })
