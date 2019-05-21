@@ -1,14 +1,17 @@
 
 //The board array that is passed into the function is shown.
-const displayBoard = (board=Array(3).fill("")) => {
-  // const board = Array(3).fill("") //this creates an array with 9 empty strings
-  const row1 = `${board[0]} | ${board[1]} | ${board[2]}`
-  const row2 = `${board[0]} | ${board[1]} | ${board[2]}`
-  const row3 = `${board[0]} | ${board[1]} | ${board[2]}`
-  const line = '----------------------'
+const displayBoard = (grid) => {
+  const row1 = `${grid[0]} | ${grid[1]} | ${grid[2]}`
+  const row2 = `${grid[3]} | ${grid[4]} | ${grid[5]}`
+  const row3 = `${grid[6]} | ${grid[7]} | ${grid[8]}`
+  const line = '------------'
 
-  return row1
-
+  return
+  `${row1}
+    ${line}
+    ${row2}
+    ${line}
+    ${row3}`
 }
 
 
@@ -16,6 +19,5 @@ const displayBoard = (board=Array(3).fill("")) => {
 
 
 module.exports = {
-  add,
   displayBoard,
  }

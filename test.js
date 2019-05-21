@@ -3,17 +3,19 @@ const game = require('./game.js')
 const ticTacToe = require('./ticTacToe.js')
 const assert = require('assert')
 
-it('correctly calculates the sume of 1 and 3', () => {
-  assert.equal(board.add(1, 3), 4)
-})
-
 //test that at the start of the game, an empty board is rendered.
 it('renders tic tac toe board', () => {
-  const array = ["one", "two", "three"]
-  assert.equal(board.displayBoard(array), "one | two | three")
+  const array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  assert.equal(board.displayBoard(array),
+  `1 | 2 | 3
+    ------------
+    4 | 5 | 6
+    ------------
+    7 | 8 | 9`
+  )
 })
 
-//test to ensure that at the start there are 9 spots on the board
+//player can enter a location for their marker
 
 
 //Rules of the Game
