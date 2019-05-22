@@ -1,6 +1,22 @@
 //Anything related to the rules of the game goes here
 const board = require('./board.js')
 
+const winningCombo = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [6, 4, 2]
+]
+
+//Players
+//whenever a move is made this will increase, since there are only 9 squares on the grid, there are only 9 moves.
+let currentPlay = 1
+const currentPlayer = (turn) => turn % 2 === 0 ? 'O' : 'X'
+
 const validateNumbers = (num) => {//player can only enter numbers
   if(isNaN(num)) {
     return false
@@ -20,4 +36,5 @@ const validatePlay = (num) => {//player can only pick a number that is not alrea
 module.exports = {
   validateNumbers,
   validatePlay,
+  currentPlayer,
 }

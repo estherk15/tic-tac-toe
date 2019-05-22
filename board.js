@@ -8,12 +8,12 @@ const displayBoard = (grid) => {
   const row3 = ` ${grid[6]} | ${grid[7]} | ${grid[8]} `
   const line = '----------------'
 
-    console.log(` ${row1}\n ${line}\n ${row2}\n ${line}\n ${row3}`)
+  console.log(` ${row1}\n ${line}\n ${row2}\n ${line}\n ${row3}`)
 }
 
 const markGrid = (token) => {
   //code should mark the grid with the correct token of current player
-
+  
 }
 
 
