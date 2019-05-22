@@ -56,5 +56,6 @@ it('runs when a board shows one of the winning combinations', () => {
   grid = ["X", "X", "X", "O", "O", ""]
   assert.equal(game.checkForWin(grid), true)
 })
+
 //Make sure after every move, the board isn't full
 //

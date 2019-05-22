@@ -23,20 +23,26 @@ const multiPlayer = () => {
   //Players
   //whenever a move is made this will increase, since there are only 9 squares on the grid, there are only 9 moves.
 
-  const grid = Array(9).fill("")
-  let currentPlay = 1
-  let token = currentPlayer(currentPlay)
-
   rl.question('Play your move by entering the grid number: \n', answer => {
     if (!game.validateNumbers(answer)){
       multiPlayer()
     }
+
     if (!game.validatePlay(answer)){
       console.log('**Please select an empty square**')
       multiplayer()
     }
 
-    playMove(answer, grid)
+  //why does the program break here?
+
+    //else {
+      //
+
+      // displayBoard(board.grid1)
+      // if(checkForWin(board.grid1)){
+      //   console.log(`Congratulations Player ${game.currentPlayer()}! You won`)
+      // }
+
   })
 }
 
@@ -53,7 +59,7 @@ rl.question(`Please select:
     rl.close()
   } else if(answer == 2) {
     board.displayBoard(board.directionsGrid)
-    console.log('\nPlayer 1 = X  ||  Player 2 = O \n')
+    console.log('\nPlayer X  ||  Player O \n')
     console.log('When it is your turn, enter the number in the corresponding\nsquare on the board you want to place your token. For example, \nif you want to place an [X] in the top left corner, you would\ntype 1 on your turn.\n')
 
     multiPlayer()
