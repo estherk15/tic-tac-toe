@@ -34,6 +34,10 @@ const checkForWin = (grid) => {//check to see if any of the winnig cobinations i
   return winner
 }
 
+const fullBoard = (grid) => { //runs through every element in an array and checks that it's a truthy value
+  return grid.every(spot => !!spot)
+}
+
 const validateNumbers = (num) => {//player can only enter numbers
   if(isNaN(num)) {
     return false
@@ -57,4 +61,5 @@ module.exports = {
   move,
   winningCombo,
   checkForWin,
+  fullBoard,
 }

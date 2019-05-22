@@ -13,36 +13,11 @@ console.log(`
   Version: 1.0.0
   `)
 
-const currentPlayer = (currentPlay) => currentPlay % 2 === 0 ? "O" : "X"
-
-const playMove = (num, grid) => {// Determine which symbol is being played, then replace the index of the grid with the square player selects
-  console.log(grid[num])
-}
-
 const multiPlayer = () => {
-  //Players
-  //whenever a move is made this will increase, since there are only 9 squares on the grid, there are only 9 moves.
-
-  rl.question('Play your move by entering the grid number: \n', answer => {
-    if (!game.validateNumbers(answer)){
-      multiPlayer()
+  const promptMove = rl.question('Play your move by entering the grid number: \n', answer => {
+    if (!game.validateNumbers(answer) || !game.validatePlay(answer)){
+      console.log('Please enter a number between 1 and 9')
     }
-
-    if (!game.validatePlay(answer)){
-      console.log('**Please select an empty square**')
-      multiplayer()
-    }
-
-  //why does the program break here?
-
-    //else {
-      //
-
-      // displayBoard(board.grid1)
-      // if(checkForWin(board.grid1)){
-      //   console.log(`Congratulations Player ${game.currentPlayer()}! You won`)
-      // }
-
   })
 }
 
@@ -62,7 +37,9 @@ rl.question(`Please select:
     console.log('\nPlayer X  ||  Player O \n')
     console.log('When it is your turn, enter the number in the corresponding\nsquare on the board you want to place your token. For example, \nif you want to place an [X] in the top left corner, you would\ntype 1 on your turn.\n')
 
-    multiPlayer()
+    while(game.currentPlay < board.grid1.length){ //as long as game hasn't gone through 9 plays, keep executing multiplayer
+      multiPlayer()
+    }
 
   } else { //PLayer has entered 1, this needs to fire off varying levels of difficulty
     singlePlayer()

@@ -20,21 +20,20 @@ it('runs when a number is entered', () => {
 })
 
 //when you make a move, the square you choose should be empty
-it('only allows the play if selected position is empty and is within range', () => {
+it('only allows the play if selected position is empty', () => {
   board.grid1 = ["O", "", "X", "", "X", "", "O", "", "X"]
   assert.equal(game.validatePlay(1, board.grid1), false)
   assert.equal(game.validatePlay(2, board.grid1), true)
   assert.equal(game.validatePlay(9, board.grid1), false)
   assert.equal(game.validatePlay(4, board.grid1), true)
-  assert.equal(game.validatePlay(-1, board.grid1), false)
-  assert.equal(game.validatePlay(10, board.grid1), false)
 })
 
 //validates selected number is within range of the grid being played
 it('only allows the play if selected position is within range', () => {
-  const grid = ["O", "", "X", "", "X", "", "O", "", "X"]
+  const grid = ["", "", "", "", "", "", "", "", ""]
   assert.equal(game.validatePlay(-1, grid), false)
   assert.equal(game.validatePlay(10, grid), false)
+  assert.equal(game.validatePlay(1, grid), true)
 })
 
 //Whose turn is it?
@@ -58,4 +57,10 @@ it('runs when a board shows one of the winning combinations', () => {
 })
 
 //Make sure after every move, the board isn't full
+it('determines whether a board is full', () => {
+  grid = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  assert.equal(game.fullBoard(grid), true)
+  assert.equal(game.fullBoard(grid), false)
+})
+
 //
