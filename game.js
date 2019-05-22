@@ -17,6 +17,23 @@ const winningCombo = [
 let currentPlay = 1
 const currentPlayer = (turn) => turn % 2 === 0 ? 'O' : 'X'
 
+const move = (num, grid) => {
+  let token = currentPlayer(currentPlayer)
+  currentPlay++
+  grid[num - 1] = token
+  return grid
+}
+
+const checkForWin = (grid) => {
+  let winner = false
+  winningCombo.some(combo => {
+    if(combo.every(index => grid[index] == "X" || grid[index] == "O")){
+      winner = true
+    }
+  })
+  return winner
+}
+
 const validateNumbers = (num) => {//player can only enter numbers
   if(isNaN(num)) {
     return false
@@ -24,8 +41,8 @@ const validateNumbers = (num) => {//player can only enter numbers
   return true
 }
 
-const validatePlay = (num) => {//player can only pick a number that is not already picked
-  if((board.grid[num-1] === "") && 0 < num <= board.grid.length) {
+const validatePlay = (num, grid) => {//player can only pick a number that is not already picked
+  if((grid[num-1] === "") && 0 < num <= grid.length) {
     return true
   }
   return false
@@ -36,5 +53,9 @@ const validatePlay = (num) => {//player can only pick a number that is not alrea
 module.exports = {
   validateNumbers,
   validatePlay,
+  currentPlay,
   currentPlayer,
+  move,
+  winningCombo,
+  checkForWin,
 }

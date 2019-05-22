@@ -1,4 +1,4 @@
-const grid = Array(9).fill("") //grid = ["", "", "", "", "", "", "", "", ""]
+const grid1 = Array(9).fill("") //grid = ["", "", "", "", "", "", "", "", ""]
 const directionsGrid = ["[1]", "[2]", "[3]", "[4]", "[5]", "[6]", "[7]", "[8]", "[9]"]
 
 //The board array that is passed into the function is shown.
@@ -13,12 +13,12 @@ const displayBoard = (grid) => {
 
 const markGrid = (token) => {
   //code should mark the grid with the correct token of current player
-  
+
 }
 
 
 module.exports = {
   displayBoard,
-  grid,
+  grid1,
   directionsGrid,
  }

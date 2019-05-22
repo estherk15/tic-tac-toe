@@ -13,16 +13,30 @@ console.log(`
   Version: 1.0.0
   `)
 
+const currentPlayer = (currentPlay) => currentPlay % 2 === 0 ? "O" : "X"
+
+const playMove = (num, grid) => {// Determine which symbol is being played, then replace the index of the grid with the square player selects
+  console.log(grid[num])
+}
+
 const multiPlayer = () => {
+  //Players
+  //whenever a move is made this will increase, since there are only 9 squares on the grid, there are only 9 moves.
+
+  const grid = Array(9).fill("")
+  let currentPlay = 1
+  let token = currentPlayer(currentPlay)
+
   rl.question('Play your move by entering the grid number: \n', answer => {
     if (!game.validateNumbers(answer)){
       multiPlayer()
     }
-
     if (!game.validatePlay(answer)){
       console.log('**Please select an empty square**')
       multiplayer()
     }
+
+    playMove(answer, grid)
   })
 }
 
