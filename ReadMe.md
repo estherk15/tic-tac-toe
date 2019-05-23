@@ -15,6 +15,7 @@ To begin, fork this repository and clone it into your local drive. Once you clon
 #### Tic Tac Toe
 
 The limitation to this game is that all player inputs must be valid numbers from 1-9. When playing the game, you are shown a board like this:
+
 ![](displayBoard.png)
 
 Enter the number on the grid where you want to place your token. If there is a winner or the game ends in a draw, the program will end. If you wish to continue playing, restart the program with ```node ticTacToe```
