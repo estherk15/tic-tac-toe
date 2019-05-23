@@ -19,5 +19,3 @@ The limitation to this game is that all player inputs must be valid numbers from
 ![](displayBoard.png)
 
 Enter the number on the grid where you want to place your token. If there is a winner or the game ends in a draw, the program will end. If you wish to continue playing, restart the program with ```node ticTacToe```
-
-<!-- Insert a gif of the user login page -->
