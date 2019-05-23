@@ -20,7 +20,6 @@ const currentPlayer = (currentPlay) => currentPlay % 2 === 0 ? 'O' : 'X'
 const move = (num, grid) => {//when a player chooses which spot they want to place their token
   let token = currentPlayer(currentPlay)
   grid[num - 1] = token
-  return grid
 }
 
 const checkForWin = (grid) => {//check to see if any of the winnig cobinations is on the board
@@ -41,8 +40,10 @@ const draw = (grid) => {
   if(!checkForWin(grid) && fullBoard(grid)){
     return true
   }
+  return false
 }
 
+//Validations
 const validateNumbers = (num) => {//player can only enter numbers
   if(isNaN(num)) {
     return false
