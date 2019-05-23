@@ -15,19 +15,18 @@ const winningCombo = [
 //Players
 //whenever a move is made this will increase, since there are only 9 squares on the grid, there are only 9 moves.
 let currentPlay = 1
-const currentPlayer = (turn) => turn % 2 === 0 ? 'O' : 'X'
+const currentPlayer = (currentPlay) => currentPlay % 2 === 0 ? 'O' : 'X'
 
 const move = (num, grid) => {//when a player chooses which spot they want to place their token
-  let token = currentPlayer(currentPlayer)
-  currentPlay++
+  let token = currentPlayer(currentPlay)
   grid[num - 1] = token
   return grid
 }
 
 const checkForWin = (grid) => {//check to see if any of the winnig cobinations is on the board
   let winner = false
-  winningCombo.some(combo => {
-    if(combo.every(index => grid[index] == "X" || grid[index] == "O")){
+  winningCombo.some(combo => {//looks through winning combinations and the first combination that meets
+    if(grid[combo[0]] !== "" && grid[combo[0]] === grid[combo[1]] && grid[combo[1]] === grid[combo[2]]){
       winner = true
     }
   })
@@ -38,6 +37,12 @@ const fullBoard = (grid) => { //runs through every element in an array and check
   return grid.every(spot => !!spot)
 }
 
+const draw = (grid) => {
+  if(!checkForWin(grid) && fullBoard(grid)){
+    return true
+  }
+}
+
 const validateNumbers = (num) => {//player can only enter numbers
   if(isNaN(num)) {
     return false
@@ -46,7 +51,7 @@ const validateNumbers = (num) => {//player can only enter numbers
 }
 
 const validatePlay = (num, grid) => {//player can only pick a number that is not already picked
-  if((grid[num-1] === "") && 0 < num <= grid.length) {
+  if((grid[num-1] === "") && 0 < num <= grid.length && validateNumbers(num)) {
     return true
   }
   return false
@@ -62,4 +67,5 @@ module.exports = {
   winningCombo,
   checkForWin,
   fullBoard,
+  draw,
 }

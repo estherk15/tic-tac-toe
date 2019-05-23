@@ -52,15 +52,25 @@ it('puts the current token onto the selected grid spot', () => {
 
 //Check after every move if someone has won
 it('runs when a board shows one of the winning combinations', () => {
-  grid = ["X", "X", "X", "O", "O", ""]
+  grid = ["X", "X", "X", "O", "O", "", "", "", ""]
   assert.equal(game.checkForWin(grid), true)
+})
+
+it('runs when a board shows one of the winning combinations', () => {
+  grid = ["X", "O", "X", "O", "O", "X", "", "", ""]
+  assert.equal(game.checkForWin(grid), false)
 })
 
 //Make sure after every move, the board isn't full
 it('determines whether a board is full', () => {
   grid = [1, 2, 3, 4, 5, 6, 7, 8, 9]
   assert.equal(game.fullBoard(grid), true)
-  assert.equal(game.fullBoard(grid), false)
+  // assert.equal(game.fullBoard(grid), false)
+})
+
+it('determines if the game is a draw', () => {
+  grid = ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
+  assert.equal(game.draw(grid), true)
 })
 
 //
