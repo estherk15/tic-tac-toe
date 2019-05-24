@@ -41,8 +41,8 @@ Board = [
 WINNING_POSITIONS = [[Board[0], Board[1], Board[2]], [Board[3],Board[4],Board[5]] ]
 
 JAVASCRIPT
-.some => .any?
-.every => .all?
+.some
+.every 
 
 Curently_playing =
 WINNING_POSITIONS.any?{ | combo |  combo.all?{|token| token == currently_playing}} #true

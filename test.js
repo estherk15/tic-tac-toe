@@ -43,22 +43,27 @@ it('determines which token is next based on how many moves have been made', () =
 })
 
 //when you select a spot on the grid, the current token takes that place
-// it('puts the current token onto the selected grid spot', () => {
-//   grid1 = Array(3).fill("")
-//   grid2 = Array(9).fill("")
-//   assert.deepStrictEqual(game.move(1, grid1), ["X", "", ""])
-//   assert.deepStrictEqual(game.move(1, grid2), ["X", "", "", "", "", "", "", "", ""])
-// })
+it('puts the current token onto the selected grid spot', () => {
+  grid1 = Array(3).fill("")
+  grid2 = Array(9).fill("")
+  assert.deepStrictEqual(game.move(1, grid1), ["X", "", ""])
+  assert.deepStrictEqual(game.move(1, grid2), ["X", "", "", "", "", "", "", "", ""])
+})
 
 //Check after every move if someone has won
 it('runs when a board shows one of the winning combinations', () => {
   grid = ["X", "X", "X", "O", "O", "", "", "", ""]
-  assert.equal(game.checkForWin(grid), true)
+  assert.deepStrictEqual(game.checkForWin(grid), true)
 })
 
 it('runs when a board shows one of the winning combinations', () => {
   grid = ["X", "O", "X", "O", "O", "X", "", "", ""]
-  assert.equal(game.checkForWin(grid), false)
+  assert.deepStrictEqual(game.checkForWin(grid), false)
+})
+
+it('runs when a board shows one of the winning combinations', () => {
+  grid = ["X", "O", "O", "", "X", "", "", "", "X"]
+  assert.deepStrictEqual(game.checkForWin(grid), true)
 })
 
 //Make sure after every move, the board isn't full

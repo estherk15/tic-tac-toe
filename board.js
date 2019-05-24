@@ -11,11 +11,6 @@ const displayBoard = (grid) => {
   console.log(` ${row1}\n ${line}\n ${row2}\n ${line}\n ${row3}`)
 }
 
-const markGrid = (token) => {
-  //code should mark the grid with the correct token of current player
-
-}
-
 
 module.exports = {
   displayBoard,
