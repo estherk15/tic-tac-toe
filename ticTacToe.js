@@ -36,9 +36,9 @@ const gamePlay = () => {
     if(game.validatePlay(input, board.grid1)){ //checks to make sure you enter a number w/i range
       const newBoard = game.move(input, board.grid1) //updates the grid by putting player token at desired location
       game.currentPlay++
-      console.log(game.currentPlay)
+      // console.log(game.currentPlay)
       board.displayBoard(newBoard) //displays the new grid on console.
-      rl.prompt()
+      gamePlay()
     }
   })
 }

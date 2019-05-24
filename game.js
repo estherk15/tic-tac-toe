@@ -14,11 +14,14 @@ const winningCombo = [
 
 //Players
 //whenever a move is made this will increase, since there are only 9 squares on the grid, there are only 9 moves.
+
 let currentPlay = 1
 const currentPlayer = (currentPlay) => currentPlay % 2 === 0 ? 'O' : 'X'
 
 const move = (num, grid) => {//when a player chooses which spot they want to place their token
-  grid[num - 1] = currentPlayer(currentPlay)
+  const token = currentPlayer(currentPlay)
+  grid[num - 1] = token
+  console.log(token)
   return grid
 }
 

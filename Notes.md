@@ -42,7 +42,10 @@ WINNING_POSITIONS = [[Board[0], Board[1], Board[2]], [Board[3],Board[4],Board[5]
 
 JAVASCRIPT
 .some
-.every 
+.every
 
 Curently_playing =
 WINNING_POSITIONS.any?{ | combo |  combo.all?{|token| token == currently_playing}} #true
+
+
+**The program displays a board with a token on the grid you choose, but it does not register the current player token, it's always X! The currentPlay counter is running though. Console.logs register that the counter increases after every move, but the player token always remains the same.
