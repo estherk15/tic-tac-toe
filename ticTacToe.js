@@ -2,46 +2,69 @@ const board = require('./board.js')
 const game = require('./game.js')
 const readline = require('readline') //Node.js CLI
 
-//Node CLI
-const rl = readline.createInterface({
+const rl = readline.createInterface({ //rl is the CLI program that outputs in the terminal and take player inputs
   input: process.stdin,
   output: process.stdout,
+  prompt: `Play your move by entering the grid number:
+  >`
 })
 
+// const prompt =  () => {
+//   for(let i = game.currentPlay; i < board.grid1.length; i += 1){
+//     console.log("before the prompt question")
+//     rl.question('Play your move by entering the grid number: \n', answer => {
+//       if(game.validatePlay(answer, board.grid1)){ //checks to make sure you enter a number w/i range
+//         const newBoard = game.move(answer, board.grid1) //updates the grid by putting player token at desired location
+//         board.displayBoard(newBoard) //displays the new grid on console.
+//       } else {
+//         prompt()
+//       }
+//     })
+//   }
+// }
+rl.setPrompt(`Play your move by entering the grid number: `)
+const gamePlay = () => {
+  //As long as the game is not over, I want to continually prompt a Player
+  //a game is over when there is a winner or it's a draw.
+  rl.prompt()
+  rl.on('line', (input) => {
+    if(game.checkForWin(board.grid1) || game.draw(board.grid1)){
+      gameOver()
+      return
+    }
+
+    if(game.validatePlay(input, board.grid1)){ //checks to make sure you enter a number w/i range
+      const newBoard = game.move(input, board.grid1) //updates the grid by putting player token at desired location
+      game.currentPlay++
+      // console.log(game.currentPlay)
+      board.displayBoard(newBoard) //displays the new grid on console.
+      gamePlay()
+    }
+  })
+}
+
+const gameOver = () => {
+  if(!!game.checkForWin(board.grid1)){
+    console.log(`${game.currentPlayer} You Win!!!`)
+    rl.close()
+  } else if (game.draw(board.grid1)){
+    console.log('Congratulations, you\'re both winners! Huzzah!')
+    rl.close()
+  }
+}
+
+const startGame = () => {
+  board.displayBoard(board.directionsGrid)
+  console.log('\nPlayer X  ||  Player O \n')
+  console.log('When it is your turn, enter the number in the corresponding\nsquare on the board you want to place your token. For example, \nif you want to place an [X] in the top left corner, you would\ntype 1 on your turn.\n')
+
+  gamePlay()
+}
+
+//Starts the game
 console.log(`
   Let's play Tic Tac Toe!
   Version: 1.0.0
   `)
 
-const multiPlayer = () => {
-  const promptMove = rl.question('Play your move by entering the grid number: \n', answer => {
-    if (!game.validateNumbers(answer) || !game.validatePlay(answer)){
-      console.log('Please enter a number between 1 and 9')
-    }
-  })
-}
-
-//CLI program readline
-rl.question(`Please select:
-  [1] Single player
-  [2] Multi - player
-`, answer => {
-  if(!game.validateNumbers(answer)){
-    console.log('Please only enter a number value of 1 or 2; restart the program with node ticTacToe')
-    rl.close()
-  } else if (answer != 1 && answer != 2){
-    console.log('Please only enter a number value of 1 or 2; restart the program with node ticTacToe')
-    rl.close()
-  } else if(answer == 2) {
-    board.displayBoard(board.directionsGrid)
-    console.log('\nPlayer X  ||  Player O \n')
-    console.log('When it is your turn, enter the number in the corresponding\nsquare on the board you want to place your token. For example, \nif you want to place an [X] in the top left corner, you would\ntype 1 on your turn.\n')
-
-    while(game.currentPlay < board.grid1.length){ //as long as game hasn't gone through 9 plays, keep executing multiplayer
-      multiPlayer()
-    }
-
-  } else { //PLayer has entered 1, this needs to fire off varying levels of difficulty
-    singlePlayer()
-  }
-})
+startGame()
