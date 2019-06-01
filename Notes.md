@@ -42,4 +42,6 @@ JAVASCRIPT
 .some
 .every
 
-**The program displays a board with a token on the grid you choose, but it does not register the current player token, it's always X! The currentPlay counter is running though. Console.logs register that the counter increases after every move, but the player token always remains the same.
+**The program displays a board with a token on the grid you choose, but it does not register the current player token, it's always X! The currentPlay counter is running though. Console.logs register that the counter increases after every move, but the player token always remains the same.**
+
+- Change the program from a CLI to a DOM program, handle click events on the tiles that the player chooses.
