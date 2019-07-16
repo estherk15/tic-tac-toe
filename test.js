@@ -6,6 +6,11 @@ const assert = require('assert')
 
 //Rules of the Game
 //validates that numbers are entered
+it('displays a board with numbers', () =>{
+  assert.deepStrictEqual(board.displayBoard(board.directionsGrid),
+  "  1 | 2 | 3 \n -----------\n  4 | 5 | 6 \n -----------\n  7 | 8 | 9 ")
+})
+
 it('runs when a number is entered', () => {
   assert.equal(game.validateNumbers(2), true)
   assert.equal(game.validateNumbers("single"), false)
@@ -44,7 +49,6 @@ it('puts the current token onto the selected grid spot', () => {
 // The second move should be 'O'
 // it('Second play should be "O"', () => {
 //   board.grid1 = Array(9).fill("")
-//   currentPlay = 2
 //
 //
 // })
@@ -76,5 +80,3 @@ it('determines if the game is a draw', () => {
   grid = ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
   assert.equal(game.draw(grid), true)
 })
-
-//
