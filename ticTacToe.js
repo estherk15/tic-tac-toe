@@ -36,12 +36,14 @@ const gamePlay = () => {
 
     if(game.validatePlay(input, board.grid1)){ //checks to make sure you enter a number w/i range
       const token = game.currentPlayer(game.currentPlay)
-      console.log('TOKEN BEFORE MOVE:', token)
       const newBoard = game.move(input, token) //updates the grid by putting player token at desired location
-      game.currentPlay++
 
+      game.currentPlay++
       board.displayBoard(newBoard) //displays the new grid on console.
+
       gamePlay()
+    } else {
+      rl.prompt()
     }
   })
 }

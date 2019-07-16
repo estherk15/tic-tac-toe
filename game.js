@@ -18,15 +18,14 @@ const winningCombo = [
 let currentPlay = 1
 const currentPlayer = (currentPlay) => currentPlay % 2 === 0 ? 'O' : 'X'
 
-const move = (num, token) => {//when a player chooses which spot they want to place their token
-
+const move = (num, token) => {//when a player chooses which spot they want to place their token, fn places the current token from gamePlay into the grid
   board.grid1[num - 1] = token
   return board.grid1
 }
 
-const checkForWin = (grid) => {//check to see if one of the winning combinations is on the board
-
+const checkForWin = (grid) => {//check to see if one of the winning combinations is on the board, returns boolean
   let winner = false
+  //Do any of the winning combinations in winningCombo match up to th
 	winningCombo.some(combo => {
 		if(grid[combo[0]] !== "" && grid[combo[0]] === grid[combo[1]] && grid[combo[1]] === grid[combo[2]]){
       winner = true
@@ -61,7 +60,6 @@ const validatePlay = (num, grid) => {//player can only pick a number that is not
   }
   return false
 }
-
 
 module.exports = {
   validateNumbers,
