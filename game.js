@@ -19,14 +19,13 @@ let currentPlay = 1
 const currentPlayer = (currentPlay) => currentPlay % 2 === 0 ? 'O' : 'X'
 
 const move = (num, token) => {//when a player chooses which spot they want to place their token
-  // const currentPlayer = (currentPlay) => currentPlay % 2 === 0 ? 'O' : 'X'
-  // const token = currentPlayer(currentPlay)
-  // console.log('CURRENT PLAY', currentPlay)
+
   board.grid1[num - 1] = token
   return board.grid1
 }
 
 const checkForWin = (grid) => {//check to see if one of the winning combinations is on the board
+
   let winner = false
 	winningCombo.some(combo => {
 		if(grid[combo[0]] !== "" && grid[combo[0]] === grid[combo[1]] && grid[combo[1]] === grid[combo[2]]){

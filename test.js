@@ -3,14 +3,6 @@ const game = require('./game.js')
 const ticTacToe = require('./ticTacToe.js')
 const assert = require('assert')
 
-// //test that at the start of the game, an empty board is rendered.
-// it('renders tic tac toe board', () => {
-//   const array = Array(9).fill(" ")//[1, 2, 3, 4, 5, 6, 7, 8, 9]
-//   assert.equal(board.displayBoard(array), ` 1 | 2 | 3\n ------------\n 4 | 5 | 6\n ------------\n 7 | 8 | 9`)
-// })
-//
-// player can enter a location for their marker
-
 
 //Rules of the Game
 //validates that numbers are entered
@@ -44,11 +36,17 @@ it('determines which token is next based on how many moves have been made', () =
 
 //when you select a spot on the grid, the current token takes that place
 it('puts the current token onto the selected grid spot', () => {
-  grid1 = Array(3).fill("")
-  grid2 = Array(9).fill("")
-  assert.deepStrictEqual(game.move(1, grid1), ["X", "", ""])
-  assert.deepStrictEqual(game.move(1, grid2), ["X", "", "", "", "", "", "", "", ""])
+  board.grid1 = Array(9).fill("")
+  assert.deepStrictEqual(game.move(1, "O"), ["O", "", "", "", "", "", "", "", ""])
+  assert.deepStrictEqual(game.move(2, "X"), ["O", "X", "", "", "", "", "", "", ""])
 })
+
+// The second move should be 'O'
+// it('Second play should be "O"', () => {
+//   board.grid1 = Array(9).fill("")
+//   currentPlay = 2
+//
+// })
 
 //Check after every move if someone has won
 it('runs when a board shows one of the winning combinations', () => {
