@@ -28,9 +28,9 @@ const gamePlay = () => {
   //As long as the game is not over, I want to continually prompt a Player
   //a game is over when there is a winner or it's a draw.
 
-  console.log(`\n`)
-  board.displayBoard(board.directionsGrid)
-  console.log(`\n`)
+  // console.log(`\n`)
+  // board.displayBoard(board.directionsGrid)
+  // console.log(`\n`)
   rl.prompt()
   rl.on('line', (input) => {
     if(game.checkForWin(board.grid1) || game.draw(board.grid1)){
@@ -38,7 +38,7 @@ const gamePlay = () => {
       return
     }
 
-    if(game.validatePlay(input, board.grid1)){ //checks to make sure you enter a number w/i range
+    if(game.validatePlay(input, board.directionsGrid)){ //checks to make sure you enter a number w/i range
       const token = game.currentPlayer(game.currentPlay)
       const newBoard = game.move(input, token) //updates the grid by putting player token at desired location
 
@@ -53,7 +53,7 @@ const gamePlay = () => {
 }
 
 const startGame = () => {
-  // board.displayBoard(board.directionsGrid)
+  board.displayBoard(board.directionsGrid)
   console.log('\nPlayer X  ||  Player O \n')
   console.log('When it is your turn, enter the number in the corresponding\nsquare on the board you want to place your token. For example, \nif you want to place an [X] in the top left corner, you would\ntype 1 on your turn.\n')
 

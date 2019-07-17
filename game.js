@@ -19,8 +19,8 @@ let currentPlay = 1
 const currentPlayer = (currentPlay) => currentPlay % 2 === 0 ? 'O' : 'X'
 
 const move = (num, token) => {//when a player chooses which spot they want to place their token, fn places the current token from gamePlay into the grid
-  board.grid1[num - 1] = token
-  return board.grid1
+  board.directionsGrid[num - 1] = token
+  return board.directionsGrid
 }
 
 const checkForWin = (grid) => {//check to see if one of the winning combinations is on the board, returns boolean
@@ -35,7 +35,7 @@ const checkForWin = (grid) => {//check to see if one of the winning combinations
   return winner
 }
 
-const fullBoard = (grid) => { //runs through every element in an array and checks that it's a truthy value
+const fullBoard = (grid) => { //runs through every element in an array and checks that it's an X or O, returns boolean
   return grid.every(spot => spot === "X" || spot === "O")
 }
 
@@ -54,8 +54,8 @@ const validateNumbers = (num) => {//player can only enter numbers
   return true
 }
 
-const validatePlay = (num, grid) => {//player can only pick a number that is not already picked
-  if((grid[num-1] === "") && 0 < num <= grid.length && validateNumbers(num)) {
+const validatePlay = (num, grid) => {//player can only pick a number that is not already picked and it has to be a number
+  if((grid[num-1] !== "X" && grid[num-1] !== "O") && (0 < num && num <= grid.length) && validateNumbers(num)){
     return true
   }
   return false

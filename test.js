@@ -18,7 +18,8 @@ it('runs when a number is entered', () => {
 
 //when you make a move, the square you choose should be empty
 it('only allows the play if selected position is empty', () => {
-  board.grid1 = ["O", "", "X", "", "X", "", "O", "", "X"]
+  board.grid1 = ["O", 2, "X", 4, "X", 6, "O", 8, "X"]
+  // board.grid2 = ["O", "O", "X", "X", "X", "O", "O", "O", "X"]
   assert.equal(game.validatePlay(1, board.grid1), false)
   assert.equal(game.validatePlay(2, board.grid1), true)
   assert.equal(game.validatePlay(9, board.grid1), false)
@@ -27,10 +28,12 @@ it('only allows the play if selected position is empty', () => {
 
 //validates selected number is within range of the grid being played
 it('only allows the play if selected position is within range', () => {
-  const grid = ["", "", "", "", "", "", "", "", ""]
+  grid = ["O", 2, "X", 4, "X", 6, "O", 8, "X"]
+  
   assert.equal(game.validatePlay(-1, grid), false)
   assert.equal(game.validatePlay(10, grid), false)
-  assert.equal(game.validatePlay(1, grid), true)
+  assert.equal(game.validatePlay("a", grid), false)
+  assert.equal(game.validatePlay(2, grid), true)
 })
 
 //Whose turn is it?
@@ -41,21 +44,13 @@ it('determines which token is next based on how many moves have been made', () =
 
 //when you select a spot on the grid, the current token takes that place
 it('puts the current token onto the selected grid spot', () => {
-  board.grid1 = Array(9).fill("")
-  assert.deepStrictEqual(game.move(1, "O"), ["O", "", "", "", "", "", "", "", ""])
-  assert.deepStrictEqual(game.move(2, "X"), ["O", "X", "", "", "", "", "", "", ""])
+  assert.deepStrictEqual(game.move(1, "O"), ["O", 2, 3, 4, 5, 6, 7, 8, 9])
+  assert.deepStrictEqual(game.move(2, "X"), ["O", "X", 3, 4, 5, 6, 7, 8, 9])
 })
-
-// The second move should be 'O'
-// it('Second play should be "O"', () => {
-//   board.grid1 = Array(9).fill("")
-//
-//
-// })
 
 //Check after every move if someone has won
 it('runs when a board shows one of the winning combinations', () => {
-  grid = ["X", "X", "X", "O", "O", "", "", "", ""]
+  grid = ["X", "X", "X", "O", "O", 6, 7, 8, 9]
   assert.deepStrictEqual(game.checkForWin(grid), true)
 })
 
@@ -73,8 +68,8 @@ it('runs when a board shows one of the winning combinations', () => {
 it('determines whether a board is full', () => {
   grid1 = ['X', 'X', 'X', 4, 'O', 6, 'O', 'O', 9]
   grid2 = ['X', 'X', 'X', 'O', 'O', 'X', 'O', 'O', 'X']
-  assert.equal(game.fullBoard(grid), false)
-  // assert.equal(game.fullBoard(grid), false)
+  assert.equal(game.fullBoard(grid1), false)
+  assert.equal(game.fullBoard(grid2), true)
 })
 
 it('determines if the game is a draw', () => {

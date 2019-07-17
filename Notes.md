@@ -15,3 +15,7 @@ focus on these this week:
 - You may need to adjust the gamePlay fn, instead of calling the function again and again, looping?
 
 - usable vs testable, your boardDisplay fn needs to be both, needs to console log the board, but also have something to return so that you can test it.
+
+- test line 33 isn't passing
+
+- (0 < num && num <= grid.length) vs (0 < num <= grid.length)
