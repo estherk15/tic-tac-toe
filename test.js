@@ -71,8 +71,9 @@ it('runs when a board shows one of the winning combinations', () => {
 
 //Make sure after every move, the board isn't full
 it('determines whether a board is full', () => {
-  grid = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-  assert.equal(game.fullBoard(grid), true)
+  grid1 = ['X', 'X', 'X', 4, 'O', 6, 'O', 'O', 9]
+  grid2 = ['X', 'X', 'X', 'O', 'O', 'X', 'O', 'O', 'X']
+  assert.equal(game.fullBoard(grid), false)
   // assert.equal(game.fullBoard(grid), false)
 })
 

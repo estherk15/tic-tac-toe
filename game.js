@@ -27,7 +27,7 @@ const checkForWin = (grid) => {//check to see if one of the winning combinations
   let winner = false
   //Do any of the winning combinations in winningCombo match up to th
 	winningCombo.some(combo => {
-		if(grid[combo[0]] !== "" && grid[combo[0]] === grid[combo[1]] && grid[combo[1]] === grid[combo[2]]){
+		if((grid[combo[0]] === "X" || grid[combo[0]] === "O") && grid[combo[0]] === grid[combo[1]] && grid[combo[1]] === grid[combo[2]]){
       winner = true
     	}
 	})
@@ -36,7 +36,7 @@ const checkForWin = (grid) => {//check to see if one of the winning combinations
 }
 
 const fullBoard = (grid) => { //runs through every element in an array and checks that it's a truthy value
-  return grid.every(spot => !!spot)
+  return grid.every(spot => spot === "X" || spot === "O")
 }
 
 const draw = (grid) => {
