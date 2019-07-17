@@ -7,8 +7,11 @@ const displayBoard = (grid) => {
   const row2 = ` ${grid[3]} | ${grid[4]} | ${grid[5]} `
   const row3 = ` ${grid[6]} | ${grid[7]} | ${grid[8]} `
   const line = '-----------'
+  const board = ` ${row1}\n ${line}\n ${row2}\n ${line}\n ${row3}`
 
-  return(` ${row1}\n ${line}\n ${row2}\n ${line}\n ${row3}`)
+  console.log(board);
+  return(board)
+  // return(` ${row1}\n ${line}\n ${row2}\n ${line}\n ${row3}`)
 }
 
 
