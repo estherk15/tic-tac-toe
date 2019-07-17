@@ -29,7 +29,6 @@ it('only allows the play if selected position is empty', () => {
 //validates selected number is within range of the grid being played
 it('only allows the play if selected position is within range', () => {
   grid = ["O", 2, "X", 4, "X", 6, "O", 8, "X"]
-  
   assert.equal(game.validatePlay(-1, grid), false)
   assert.equal(game.validatePlay(10, grid), false)
   assert.equal(game.validatePlay("a", grid), false)
@@ -55,12 +54,12 @@ it('runs when a board shows one of the winning combinations', () => {
 })
 
 it('runs when a board shows one of the winning combinations', () => {
-  grid = ["X", "O", "X", "O", "O", "X", "", "", ""]
+  grid = ["X", "O", "X", "O", "O", "X", 7, 8, 9]
   assert.deepStrictEqual(game.checkForWin(grid), false)
 })
 
 it('runs when a board shows one of the winning combinations', () => {
-  grid = ["X", "O", "O", "", "X", "", "", "", "X"]
+  grid = ["X", "O", "O", 4, "X", 6, 7, 8, "X"]
   assert.deepStrictEqual(game.checkForWin(grid), true)
 })
 
