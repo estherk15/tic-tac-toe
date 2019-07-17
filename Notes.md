@@ -4,6 +4,13 @@ focus on these this week:
 * Invalid input - outside of range [**resolved**]
 * Invalid input - Same square [**resolved**]
 * Grid entry disappear after initial entry (figure out whether you want to display the directionsGrid or have the tokens replace the numbers on the directionsGrid.)
+* Debug the game not checking for winners
+* Debug the recursive winner message
+
+[After Above]
+computer Player
+unbeatable Player
+packaging code options
 
 **Notes**
 ~~The move function no longer worries about the token, it's given the token from the gamePlay fn and all it does is to replace the board with the given token.~~
@@ -16,6 +23,6 @@ focus on these this week:
 
 - usable vs testable, your boardDisplay fn needs to be both, needs to console log the board, but also have something to return so that you can test it.
 
-- test line 33 isn't passing
+-git stash
 
-- (0 < num && num <= grid.length) vs (0 < num <= grid.length)
+- recursive testing
