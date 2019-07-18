@@ -49,22 +49,19 @@ it('puts the current token onto the selected grid spot', () => {
 
 //Check after every move if someone has won
 it('runs when a board shows one of the winning combinations', () => {
-  grid = ["X", "X", "X", "O", "O", 6, 7, 8, 9]
-  assert.deepStrictEqual(game.checkForWin(grid), true)
+  grid1 = ["X", "X", "X", "O", "O", 6, 7, 8, 9]
+  grid2 = ["X", "O", "O", 4, "X", 6, 7, 8, "X"]
+  assert.deepStrictEqual(game.checkForWin(grid1), true)
+  assert.deepStrictEqual(game.checkForWin(grid2), true)
 })
 
-it('runs when a board shows one of the winning combinations', () => {
+it('runs when a board shows none of the winning combinations', () => {
   grid = ["X", "O", "X", "O", "O", "X", 7, 8, 9]
   assert.deepStrictEqual(game.checkForWin(grid), false)
 })
 
-it('runs when a board shows one of the winning combinations', () => {
-  grid = ["X", "O", "O", 4, "X", 6, 7, 8, "X"]
-  assert.deepStrictEqual(game.checkForWin(grid), true)
-})
-
 //Make sure after every move, the board isn't full
-it('determines whether a board is full', () => {
+it('determines whether a board is or isnt full', () => {
   grid1 = ['X', 'X', 'X', 4, 'O', 6, 'O', 'O', 9]
   grid2 = ['X', 'X', 'X', 'O', 'O', 'X', 'O', 'O', 'X']
   assert.equal(game.fullBoard(grid1), false)

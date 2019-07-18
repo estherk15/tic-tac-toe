@@ -12,12 +12,13 @@ const winningCombo = [
   [6, 4, 2]
 ]
 
-//Players
+//Players====================================================
 //whenever a move is made this will increase, since there are only 9 squares on the grid, there are only 9 moves.
 
 let currentPlay = 1
 const currentPlayer = (currentPlay) => currentPlay % 2 === 0 ? 'O' : 'X'
 
+//Gameplay===================================================
 const move = (num, token) => {//when a player chooses which spot they want to place their token, fn places the current token from gamePlay into the grid
   board.directionsGrid[num - 1] = token
   return board.directionsGrid
@@ -46,7 +47,7 @@ const draw = (grid) => {
   return false
 }
 
-//Validations
+//Validations ===========================================
 const validateNumbers = (num) => {//player can only enter numbers
   if(isNaN(num)) {
     return false

@@ -28,9 +28,6 @@ const gamePlay = () => {
   //As long as the game is not over, I want to continually prompt a Player
   //a game is over when there is a winner or it's a draw.
 
-  // console.log(`\n`)
-  // board.displayBoard(board.directionsGrid)
-  // console.log(`\n`)
   rl.prompt()
   rl.on('line', (input) => {
     if(game.checkForWin(board.directionsGrid) || game.draw(board.directionsGrid)){
