@@ -7,7 +7,7 @@ const assert = require('assert')
 //Rules of the Game
 //validates that numbers are entered
 it('displays a board with numbers', () =>{
-  assert.deepStrictEqual(board.displayBoard(board.directionsGrid),
+  assert.deepStrictEqual(board.displayBoard(board.multiplayer),
   "  1 | 2 | 3 \n -----------\n  4 | 5 | 6 \n -----------\n  7 | 8 | 9 ")
 })
 
