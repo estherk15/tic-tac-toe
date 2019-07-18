@@ -34,7 +34,6 @@ const gamePlay = () => {
       gameOver()
       return
     }
-
     if(game.validatePlay(input, board.directionsGrid)){ //checks to make sure you enter a number w/i range
       const token = game.currentPlayer(game.currentPlay)
       const newBoard = game.move(input, token) //updates the grid by putting player token at desired location
@@ -55,6 +54,7 @@ const startGame = () => {
   console.log('When it is your turn, enter the number in the corresponding\nsquare on the board you want to place your token. For example, \nif you want to place an [X] in the top left corner, you would\ntype 1 on your turn.\n')
 
   gamePlay()
+
 }
 
 const gameOver = () => {

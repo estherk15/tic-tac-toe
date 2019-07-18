@@ -3,8 +3,8 @@ focus on these this week:
 * X only player [**resolved**]
 * Invalid input - outside of range [**resolved**]
 * Invalid input - Same square [**resolved**]
-* Grid entry disappear after initial entry (figure out whether you want to display the directionsGrid or have the tokens replace the numbers on the directionsGrid.)
-* Debug the game not checking for winners
+* Grid entry disappear after initial entry (figure out whether you want to display the directionsGrid or have the tokens replace the numbers on the directionsGrid.)[**numberDisplay branch displays the directions grid**]
+* Debug the game not checking for winners [**resolved** fn were referencing grid1 and not directionsGrid].
 * Debug the recursive winner message
 
 [After Above]
@@ -20,6 +20,5 @@ packaging code options
 - You may need to adjust the gamePlay fn, instead of calling the function again and again, looping?
 - usable vs testable, your boardDisplay fn needs to be both, needs to console log the board, but also have something to return so that you can test it.
 
--git stash
-
+- git stash
 - recursive testing
