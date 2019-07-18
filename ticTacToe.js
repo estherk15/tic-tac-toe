@@ -11,10 +11,10 @@ const rl = readline.createInterface({ //rl is the CLI program that outputs in th
 
 rl.setPrompt(`Play your move by entering the grid number: `)
 // const prompt =  () => {
-//   for(let i = game.currentPlay; i < board.grid1.length; i += 1){
+//   for(let i = game.currentPlay; i < board.directionsGrid.length; i += 1){
 //     console.log("before the prompt question")
 //     rl.question('Play your move by entering the grid number: \n', answer => {
-//       if(game.validatePlay(answer, board.grid1)){ //checks to make sure you enter a number w/i range
+//       if(game.validatePlay(answer, board.directionsGrid)){ //checks to make sure you enter a number w/i range
 //         const newBoard = game.move(answer, board.grid1) //updates the grid by putting player token at desired location
 //         board.displayBoard(newBoard) //displays the new grid on console.
 //       } else {
@@ -33,7 +33,7 @@ const gamePlay = () => {
   // console.log(`\n`)
   rl.prompt()
   rl.on('line', (input) => {
-    if(game.checkForWin(board.grid1) || game.draw(board.grid1)){
+    if(game.checkForWin(board.directionsGrid) || game.draw(board.directionsGrid)){
       gameOver()
       return
     }
@@ -61,10 +61,10 @@ const startGame = () => {
 }
 
 const gameOver = () => {
-  if(!!game.checkForWin(board.grid1)){
+  if(!!game.checkForWin(board.directionsGrid)){
     console.log(`${game.currentPlayer} You Win!!!`)
     rl.close()
-  } else if (game.draw(board.grid1)){
+  } else if (game.draw(board.directionsGrid)){
     console.log('Congratulations, you\'re both winners! Huzzah!')
     rl.close()
   }

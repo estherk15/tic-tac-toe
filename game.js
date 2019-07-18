@@ -36,7 +36,7 @@ const checkForWin = (grid) => {//check to see if one of the winning combinations
 }
 
 const fullBoard = (grid) => { //runs through every element in an array and checks that it's an X or O, returns boolean
-  return grid.every(spot => spot === "X" || spot === "O")
+  return grid.every(spot => (spot === "X" || spot === "O"))
 }
 
 const draw = (grid) => {
