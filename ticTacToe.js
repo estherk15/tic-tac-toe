@@ -14,6 +14,8 @@ rl.setPrompt(`Play your move by entering the grid number: `)
 const gamePlay = () => {
   //a game is over when there is a winner or it's a draw.
 
+  //Instead of putting the functions all inside the if statement, what if I created a variable that toggles when the game is active or not and did a while function that states, as long as the game is still active, the game will constantly run a prompt and constantly check to see if the conditions are a win or not?
+
   //At the start of the game, check to see whether you've won or not:
   if(!game.checkForWin(board.multiplayer) && !game.draw(board.multiplayer)){//As long as the game is not over, I want to continually prompt a Player
     rl.prompt()
@@ -28,11 +30,11 @@ const gamePlay = () => {
         board.displayBoard(newBoard) //displays the new grid on console.
 
         gamePlay()
-      } else {
-        rl.prompt()
-      }
+      } //else {
+        //rl.prompt()
+      //}
     })
-  } else if (game.checkForWin(board.multiplayer) || game.draw(multiplayer)){
+  } else if (game.checkForWin(board.multiplayer) || game.draw(board.multiplayer)){
     const winner = game.currentPlayer(game.currentPlay-1) //The currentPlay will be the next play since the function doesn't check to see who the winner is until the next go around.
     return gameOver(winner)
     rl.close()
