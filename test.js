@@ -19,7 +19,6 @@ it('runs when a number is entered', () => {
 //when you make a move, the square you choose should be empty
 it('only allows the play if selected position is empty', () => {
   board.grid1 = ["O", 2, "X", 4, "X", 6, "O", 8, "X"]
-  // board.grid2 = ["O", "O", "X", "X", "X", "O", "O", "O", "X"]
   assert.equal(game.validatePlay(1, board.grid1), false)
   assert.equal(game.validatePlay(2, board.grid1), true)
   assert.equal(game.validatePlay(9, board.grid1), false)

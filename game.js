@@ -59,7 +59,7 @@ const validatePlay = (num, grid) => {//player can only pick a number that is not
   if((grid[num-1] !== "X" && grid[num-1] !== "O") && (0 < num && num <= grid.length) && validateNumbers(num)){
     return true
   }
-  console.log("Please enter a valid number: ")
+
   return false
 }
 

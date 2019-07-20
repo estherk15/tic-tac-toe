@@ -22,3 +22,12 @@ packaging code options
 
 - git stash
 - recursive testing
+
+//OK, so when I run my game, I want to:
+//1. prompt a player to enter a number
+//2. Check to see that it's a valid numbers
+// 3. If invalid, ask the user to re-enter a correct input
+// 4. If valid, take the user input and use game.move fn to put the token on the board.
+// 5. Check the board to see if there is a winning combination or a draw.
+// 6. If so, the game is no longer active, gameOver
+// 7. If there is no winner nor draw, the game is still active and I want to repeat steps 1-5.
