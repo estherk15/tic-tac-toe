@@ -7,7 +7,7 @@ const rl = readline.createInterface({ //rl is the CLI program that outputs in th
   output: process.stdout,
 })
 
-rl.setPrompt(`Play your move by entering the grid number Player: `)
+rl.setPrompt(`Play your move by entering the grid number:  `)
 
 const gameOver = (winner) => {
   if(!!game.checkForWin(board.multiplayer)){
@@ -23,6 +23,8 @@ const gamePlay = () => {
 
   //At the start of the game, check to see whether you've won or not:
   if(!game.checkForWin(board.multiplayer) && !game.draw(board.multiplayer)){//As long as the game is not over, I want to continually prompt a Player
+    const token = game.currentPlayer(game.currentPlay)
+    console.log(`Player ${token}, your move`);
     rl.prompt()
     rl.on('line', (input) => {
       if(game.validatePlay(input, board.multiplayer)){ //checks to make sure you enter a number w/i range
