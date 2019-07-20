@@ -7,44 +7,37 @@ const rl = readline.createInterface({ //rl is the CLI program that outputs in th
   output: process.stdout,
 })
 
-rl.setPrompt(`Play your move by entering the grid number:  `)
-
-const gameOver = (winner) => {
-  if(!!game.checkForWin(board.multiplayer)){
-    console.log(`Player [${winner}] You Win!!!`)
-    rl.close()
-  } else if (game.draw(board.multiplayer)){
-    console.log('It\'s a tie, you\'re both winners! Huzzah!')
-    rl.close()
-  }
-}
-
 const gamePlay = () => {
+  const token = game.currentPlayer(game.currentPlay)
 
-  //At the start of the game, check to see whether you've won or not:
-  if(!game.checkForWin(board.multiplayer) && !game.draw(board.multiplayer)){//As long as the game is not over, I want to continually prompt a Player
-    const token = game.currentPlayer(game.currentPlay)
-    console.log(`Player ${token}, your move`);
-    rl.prompt()
-    rl.on('line', (input) => {
-      if(game.validatePlay(input, board.multiplayer)){ //checks to make sure you enter a number w/i range
-        const token = game.currentPlayer(game.currentPlay)
-        const newBoard = game.move(input, token) //updates the grid by putting player token at desired location
+  rl.question(`Player ${token}, your move:  `, (input) => {
+    if(game.validatePlay(input, board.multiplayer)){ //checks to make sure you enter a number w/i range
+      // const token = game.currentPlayer(game.currentPlay)
+      const newBoard = game.move(input, token) //updates the grid by putting player token at desired location
+      board.displayBoard(newBoard) //displays the new grid on console.
+      console.log(`\n`);
 
-        game.currentPlay++
-
-        board.displayBoard(newBoard) //displays the new grid on console.
-        console.log(`\n`);
-
-        gamePlay()
+      if(game.checkForWin(board.multiplayer)){
+        const winner = game.currentPlayer(game.currentPlay)
+        console.log(`Player [${winner}] You Win!!!`)
+        rl.close()
+        return //without the return, the game continues to prompt
       }
-    })
-  } else if (game.checkForWin(board.multiplayer) || game.draw(board.multiplayer)){
-    const winner = game.currentPlayer(game.currentPlay-1) //The currentPlay will be the next play since the function doesn't check to see who the winner is until the next go around.
-    return gameOver(winner)
-    // rl.close()
-  }
+      if (game.draw(board.multiplayer)){
+        console.log('It\'s a tie, you\'re both winners! Huzzah!')
+        rl.close()
+        return
+      }
+      game.currentPlay++
+      gamePlay()
+
+    } else {
+      console.log(`Invalid input, please try again \n`);
+      gamePlay()
+    }
+  })
 }
+
 
 const startGame = () => {
   board.displayBoard(board.multiplayer)
