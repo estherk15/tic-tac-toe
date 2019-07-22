@@ -40,8 +40,8 @@ const gamePlay = () => { //multiplayer mode
   })
 }
 
-const singlePlay1 = () => {
-
+const singlePlay1 = () => { //single play easy mode
+  
 }
 
 const menu = () => {
@@ -61,10 +61,11 @@ const difficultyMode = () => {
         // singlePlay1()
         break
       case 2:
-        console.log("Work in progress, still wri");
+        console.log("Work in progress");
         // singlePlay2()
         break
       case 3:
+      console.log("Work in progress");
         // singlePlay3()
         break
       default:

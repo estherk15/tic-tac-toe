@@ -11,7 +11,7 @@ it('displays a board with numbers', () =>{
   "  1 | 2 | 3 \n -----------\n  4 | 5 | 6 \n -----------\n  7 | 8 | 9 ")
 })
 
-it('runs when a number is entered', () => {
+it('runs only when a number is entered', () => {
   assert.equal(game.validateNumbers(2), true)
   assert.equal(game.validateNumbers("single"), false)
 })
@@ -41,12 +41,13 @@ it('returns available spot on the grid',  () => {
   assert.deepStrictEqual(game.availablePlays(grid), [2, 4, 6, 8])
 })
 
-it('returns a number from the given array', () => {
+//Given a random index number, the play will return the corresponding element
+it('returns the correct element of a given index', () => {
   available = [2, 4, 6, 8]
-  assert.equal(game.randomNumber(available) < 5, true )
-  //fn is passed array length,
-  //should spit out random index of that array,
-  //then return the corresponding element of that index
+  randomizerFn = num => num
+  assert.equal(game.randomPlay(available, randomizerFn(5)), undefined)
+  assert.equal(game.randomPlay(available, randomizerFn(3)), 8)
+  assert.equal(game.randomPlay(available, randomizerFn(0)), 2)
 })
 
 //Whose turn is it?

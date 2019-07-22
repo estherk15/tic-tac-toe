@@ -14,7 +14,6 @@ const winningCombo = [
 
 //Players====================================================
 //whenever a move is made this will increase, since there are only 9 squares on the grid, there are only 9 moves.
-
 let currentPlay = 1
 const currentPlayer = (currentPlay) => currentPlay % 2 === 0 ? 'O' : 'X'
 
@@ -47,7 +46,8 @@ const draw = (grid) => {
   return false
 }
 
-const availablePlays = (board) => {
+//Single Player Easy Mode ======================================
+const availablePlays = (board) => {//returns an array of available open spots on the board
   let available = []
   board.forEach(spot => {
     if(spot !== "X" && spot !=="O"){
@@ -57,13 +57,14 @@ const availablePlays = (board) => {
   return available
 }
 
-const randomNumber = (array, randomizerFn) => {
-  if(!randomizerFn) {
-    return Math.floor(Math.random() * (+array.length))
-  } else {
-    return randomizerFn() //This is a dependency fn, used for testing. The game shold never call this function, only the test
+const randomPlay = (array, randomizerFn) => {
+  if(!randomizerFn){
+    const randomizerFn = () => (Math.floor(Math.random() * (array.length)))
+    return array[randomizerFn()]
   }
+  return array[randomizerFn]
 }
+//Math.random(), returns a float between 0 and 1
 
 
 //Validations ===========================================
@@ -93,5 +94,5 @@ module.exports = {
   fullBoard,
   draw,
   availablePlays,
-  randomNumber
+  randomPlay
 }
