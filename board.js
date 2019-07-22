@@ -1,5 +1,5 @@
 const grid1 = Array(9).fill("") //grid = ["", "", "", "", "", "", "", "", ""]
-const multiplayer = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+const standard = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 //The board array that is passed into the function is shown.
 const displayBoard = (grid) => {
@@ -17,5 +17,5 @@ const displayBoard = (grid) => {
 module.exports = {
   displayBoard,
   grid1,
-  multiplayer,
+  standard,
  }

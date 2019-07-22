@@ -19,8 +19,8 @@ const currentPlayer = (currentPlay) => currentPlay % 2 === 0 ? 'O' : 'X'
 
 //Gameplay===================================================
 const move = (num, token) => {//when a player chooses which spot they want to place their token, fn places the current token from gamePlay into the grid
-  board.multiplayer[num - 1] = token
-  return board.multiplayer
+  board.standard[num - 1] = token
+  return board.standard
 }
 
 const checkForWin = (grid) => {//check to see if one of the winning combinations is on the board, returns boolean
