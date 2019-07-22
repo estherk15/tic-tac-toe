@@ -20,7 +20,7 @@ packaging code options
 - You may need to adjust the gamePlay fn, instead of calling the function again and again, looping?
 - usable vs testable, your boardDisplay fn needs to be both, needs to console log the board, but also have something to return so that you can test it.
 
-- git stash
+- git stash save
 - recursive testing
 
 //OK, so when I run my game, I want to:

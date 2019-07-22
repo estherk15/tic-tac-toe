@@ -14,7 +14,6 @@ const winningCombo = [
 
 //Players====================================================
 //whenever a move is made this will increase, since there are only 9 squares on the grid, there are only 9 moves.
-
 let currentPlay = 1
 const currentPlayer = (currentPlay) => currentPlay % 2 === 0 ? 'O' : 'X'
 
@@ -47,6 +46,27 @@ const draw = (grid) => {
   return false
 }
 
+//Single Player Easy Mode ======================================
+const availablePlays = (board) => {//returns an array of available open spots on the board
+  let available = []
+  board.forEach(spot => {
+    if(spot !== "X" && spot !=="O"){
+      available.push(spot)
+    }
+  })
+  return available
+}
+
+const randomPlay = (array, randomizerFn) => {
+  if(!randomizerFn){
+    const randomizerFn = () => (Math.floor(Math.random() * (array.length)))
+    return array[randomizerFn()]
+  }
+  return array[randomizerFn]
+}
+//Math.random(), returns a float between 0 and 1
+
+
 //Validations ===========================================
 const validateNumbers = (num) => {//player can only enter numbers
   if(isNaN(num)) {
@@ -73,4 +93,6 @@ module.exports = {
   checkForWin,
   fullBoard,
   draw,
+  availablePlays,
+  randomPlay
 }
