@@ -34,6 +34,21 @@ it('only allows the play if selected position is within range', () => {
   assert.equal(game.validatePlay(2, grid), true)
 })
 
+//returns the available spots on a grid
+it('returns available spot on the grid',  () => {
+  grid = ["O", 2, "X", 4, "X", 6, "O", 8, "X"]
+  // console.log(game.availablePlays(grid));
+  assert.deepStrictEqual(game.availablePlays(grid), [2, 4, 6, 8])
+})
+
+it('returns a number from the given array', () => {
+  available = [2, 4, 6, 8]
+  assert.equal(game.randomNumber(available) < 5, true )
+  //fn is passed array length,
+  //should spit out random index of that array,
+  //then return the corresponding element of that index
+})
+
 //Whose turn is it?
 it('determines which token is next based on how many moves have been made', () => {
   assert.equal(game.currentPlayer(2), 'O')

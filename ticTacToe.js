@@ -17,15 +17,14 @@ const gameOver = (winner) => {
   }
 }
 
-const gamePlay = () => {
+const gamePlay = () => { //multiplayer mode
   const token = game.currentPlayer(game.currentPlay)
-
-  rl.question(`Player ${token}, your move:  `, (input) => {
+  rl.question(`\n Player ${token}, your move:  `, (input) => {
     if(game.validatePlay(input, board.multiplayer)){ //checks to make sure you enter a number w/i range
       const newBoard = game.move(input, token) //updates the grid by putting player token at desired location
       console.log(`\n`)
       board.displayBoard(newBoard) //displays the new grid on console.
-      console.log(`\n`);
+      // console.log(`\n`);
 
       if((game.checkForWin(board.multiplayer)) || (game.draw(board.multiplayer))){
         const winner = game.currentPlayer(game.currentPlay)
@@ -41,13 +40,46 @@ const gamePlay = () => {
   })
 }
 
+const singlePlay1 = () => {
+
+}
+
+const menu = () => {
+  rl.question('[1] Single Player \n[2] Multi Player \n :', (input) => {
+    if(input == 1) { //if it's a single player, go to the difficulty menu
+      difficultyMode()
+    } else { //if it's a multiplayer, go to the game
+      gamePlay()
+    }
+  })
+}
+
+const difficultyMode = () => {
+  rl.question('Pick a difficulty level: \n[1] Easy \n[2] Moderate \n[3] Difficult\n', (input) => {
+    switch(input) {
+      case 1:
+        // singlePlay1()
+        break
+      case 2:
+        console.log("Work in progress, still wri");
+        // singlePlay2()
+        break
+      case 3:
+        // singlePlay3()
+        break
+      default:
+        // singlePlay1()
+    }
+  })
+}
+
 
 const startGame = () => {
   board.displayBoard(board.multiplayer)
   console.log('\nPlayer X  ||  Player O \n')
   console.log('When it is your turn, enter the number in the corresponding\nsquare on the board you want to place your token. For example, \nif you want to place an [X] in the top left corner, you would\ntype 1 on your turn.\n')
 
-  gamePlay()
+  menu()
 }
 
 //Starts the game

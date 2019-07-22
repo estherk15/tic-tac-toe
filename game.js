@@ -47,6 +47,25 @@ const draw = (grid) => {
   return false
 }
 
+const availablePlays = (board) => {
+  let available = []
+  board.forEach(spot => {
+    if(spot !== "X" && spot !=="O"){
+      available.push(spot)
+    }
+  })
+  return available
+}
+
+const randomNumber = (array, randomizerFn) => {
+  if(!randomizerFn) {
+    return Math.floor(Math.random() * (+array.length))
+  } else {
+    return randomizerFn() //This is a dependency fn, used for testing. The game shold never call this function, only the test
+  }
+}
+
+
 //Validations ===========================================
 const validateNumbers = (num) => {//player can only enter numbers
   if(isNaN(num)) {
@@ -73,4 +92,6 @@ module.exports = {
   checkForWin,
   fullBoard,
   draw,
+  availablePlays,
+  randomNumber
 }
