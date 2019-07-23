@@ -85,6 +85,10 @@ const validatePlay = (num, grid) => {//player can only pick a number that is not
   return false
 }
 
+const utility = () => {
+
+}
+
 module.exports = {
   validateNumbers,
   validatePlay,
@@ -96,5 +100,6 @@ module.exports = {
   fullBoard,
   draw,
   availablePlays,
-  randomPlay
+  randomPlay,
+  // utility,
 }

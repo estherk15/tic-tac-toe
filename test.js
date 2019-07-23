@@ -93,13 +93,13 @@ it('determines if the game is a draw', () => {
 
 //The game should take the available plays
 //Evaluate whether the spot it chooses will lead to optimal outcome? If there is a winner, the outcome has reached an end
-it('assigns a score to a win, lose, or draw end game', () => {
-  grid1 = ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
-  grid2 = ["X", "X", "X", "O", "O", "X", "O", "X", "O"]
-  grid3 = ["X", "O", "X", "O", "X", 6, "O", "O", "O"]
-  assert.equal(game.score(grid1), 0)
-  assert.equal(game.score(grid2), -10)
-  assert.equal(game.score(grid3), 10)
-})
+// it('assigns a utility to a win, lose, or draw end game', () => {
+//   grid1 = ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
+//   grid2 = ["X", "X", "X", "O", "O", "X", "O", "X", "O"]
+//   grid3 = ["X", "O", "X", "O", "X", 6, "O", "O", "O"]
+//   assert.equal(game.utility(grid1), 0)
+//   assert.equal(game.utility(grid2), -10)
+//   assert.equal(game.utility(grid3), 10)
+// })
 //minimax algo?
 //return the most optimal spot?
