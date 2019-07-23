@@ -7,7 +7,7 @@ const assert = require('assert')
 //Rules of the Game
 //validates that numbers are entered
 it('displays a board with numbers', () =>{
-  assert.deepStrictEqual(board.displayBoard(board.multiplayer),
+  assert.deepStrictEqual(board.displayBoard(board.standard),
   "  1 | 2 | 3 \n -----------\n  4 | 5 | 6 \n -----------\n  7 | 8 | 9 ")
 })
 
@@ -45,8 +45,11 @@ it('returns available spot on the grid',  () => {
 it('returns the correct element of a given index', () => {
   available = [2, 4, 6, 8]
   randomizerFn = num => num
+  console.log(randomizerFn(5))
   assert.equal(game.randomPlay(available, randomizerFn(5)), undefined)
+  console.log(randomizerFn(3))
   assert.equal(game.randomPlay(available, randomizerFn(3)), 8)
+  console.log(randomizerFn(0))
   assert.equal(game.randomPlay(available, randomizerFn(0)), 2)
 })
 
@@ -89,6 +92,14 @@ it('determines if the game is a draw', () => {
 })
 
 //The game should take the available plays
-//Evaluate whether the spot it chooses will lead to optimal outcome?
+//Evaluate whether the spot it chooses will lead to optimal outcome? If there is a winner, the outcome has reached an end
+it('assigns a score to a win, lose, or draw end game', () => {
+  grid1 = ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
+  grid2 = ["X", "X", "X", "O", "O", "X", "O", "X", "O"]
+  grid3 = ["X", "O", "X", "O", "X", 6, "O", "O", "O"]
+  assert.equal(game.score(grid1), 0)
+  assert.equal(game.score(grid2), -10)
+  assert.equal(game.score(grid3), 10)
+})
 //minimax algo?
 //return the most optimal spot?

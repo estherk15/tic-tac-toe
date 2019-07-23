@@ -17,6 +17,7 @@ const gameOver = (winner) => {
   }
 }
 
+//Multplayer mode ==================================
 const gamePlay = () => { //multiplayer mode
   const token = game.currentPlayer(game.currentPlay)
   rl.question(`\n Player ${token}, your move:  `, (input) => {
@@ -40,6 +41,7 @@ const gamePlay = () => { //multiplayer mode
   })
 }
 
+//Singleplayer mode ================================
 const singlePlay1 = () => { //single play easy mode
   const token = game.currentPlayer(game.currentPlay)
 
@@ -51,7 +53,6 @@ const singlePlay1 = () => { //single play easy mode
         board.displayBoard(newBoard)
 
         if((game.checkForWin(board.standard)) || (game.draw(board.standard))){ //if there is a winner do this:
-          // const winner = game.currentPlayer(game.currentPlay)
           return gameOver(token)
         } else { //if there isn't a winner do this
           game.currentPlay++
@@ -63,7 +64,6 @@ const singlePlay1 = () => { //single play easy mode
       }
     })
   }
-
   if(token === "O") { //game reaches here
     //Player O is the computer
     //Hit the random element from available elements
@@ -72,7 +72,6 @@ const singlePlay1 = () => { //single play easy mode
     const computerMove = game.randomPlay(possiblePlays) //returns the spot that the computer is placing its token
     const newBoard = game.move(computerMove, token)
     console.log(`\n Player O's move: ${computerMove} \n`)
-
     board.displayBoard(newBoard)
 
     if((game.checkForWin(board.standard)) || (game.draw(board.standard))){ //if there is a winner do this:
@@ -82,8 +81,13 @@ const singlePlay1 = () => { //single play easy mode
       singlePlay1()
     }
   }
+}//singlePlay1
+
+const singlePlay3 = () => { //Unbeatable mode
+  console.log("Trying to figure out minimax algos! Come back later ^_^");
 }
 
+//Game Options and Menus ==================================
 const menu = () => {
   rl.question('[1] Single Player \n[2] Multi Player \n :', (input) => {
     if(input == 1) { //if it's a single player, go to the difficulty menu
@@ -113,7 +117,6 @@ const difficultyMode = () => {
     }
   })
 }
-
 
 const startGame = () => {
   board.displayBoard(board.standard)

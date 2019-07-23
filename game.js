@@ -66,6 +66,8 @@ const randomPlay = (array, randomizerFn) => {
 }
 //Math.random(), returns a float between 0 and 1
 
+//Single Player Unbeatable Mode ===========================
+
 
 //Validations ===========================================
 const validateNumbers = (num) => {//player can only enter numbers
