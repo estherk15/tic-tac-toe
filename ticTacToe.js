@@ -9,10 +9,10 @@ const rl = readline.createInterface({ //rl is the CLI program that outputs in th
 
 const gameOver = (winner) => {
   if(!!game.checkForWin(board.standard)){
-    console.log(`Player [${winner}] You Win!!!`)
+    console.log(` Player [${winner}] You Win!!!`)
     return rl.close()
   } else if (game.draw(board.standard)){
-    console.log('It\'s a tie, you\'re both winners! Huzzah!')
+    console.log('\n It\'s a tie, you\'re both winners! Huzzah!')
     return rl.close()
   }
 }
@@ -34,7 +34,7 @@ const gamePlay = () => { //multiplayer mode
       game.currentPlay++
       gamePlay()
     } else { //if the input is not valid
-      console.log(`Invalid input, please try again \n`);
+      console.log(`\n ***Invalid input, please try again***`);
       gamePlay()
     }
   })
@@ -58,21 +58,21 @@ const singlePlay1 = () => { //single play easy mode
           singlePlay1()
         }
       } else {
-        console.log(`Invalid input, please try again \n`);
+        console.log(`\n ***Invalid input, please try again***`);
         singlePlay1()
       }
     })
   }
 
   if(token === "O") { //game reaches here
-    console.log("CheeriO, pwahahaha ^_^")
     //Player O is the computer
     //Hit the random element from available elements
     //Place the O at the random spot
     const possiblePlays = game.availablePlays(board.standard) //returns an array of all possible plays the computer can make
     const computerMove = game.randomPlay(possiblePlays) //returns the spot that the computer is placing its token
     const newBoard = game.move(computerMove, token)
-    console.log(`\n`)
+    console.log(`\n Player O's move: ${computerMove} \n`)
+
     board.displayBoard(newBoard)
 
     if((game.checkForWin(board.standard)) || (game.draw(board.standard))){ //if there is a winner do this:
@@ -97,7 +97,7 @@ const menu = () => {
 const difficultyMode = () => {
   rl.question('Pick a difficulty level: \n[1] Easy \n[2] Moderate \n[3] Difficult\n', (input) => {
     switch(input) {
-      case "1": //
+      case "1":
         singlePlay1()
         break
       case "2":
@@ -109,7 +109,7 @@ const difficultyMode = () => {
         singlePlay3()
         break
       default:
-        singlePlay1()
+        difficultyMode()
     }
   })
 }
