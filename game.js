@@ -96,5 +96,5 @@ module.exports = {
   fullBoard,
   draw,
   availablePlays,
-  randomPlay
+  randomPlay,
 }
