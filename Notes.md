@@ -5,6 +5,7 @@ focus on these this week:
 * Invalid input - Same square [**resolved**]
 * Grid entry disappear after initial entry (figure out whether you want to display the directionsGrid or have the tokens replace the numbers on the directionsGrid.)[**numberDisplay branch displays the directions grid**]
 * Debug the game not checking for winners [**resolved** fn were referencing grid1 and not directionsGrid].
+* Debug why the switch statement won't accept any number other than 1 [**The input is not an integer, it's a string, so each case had to be changed to a string**]
 * Debug the recursive winner message
 
 [After Above]
@@ -22,6 +23,8 @@ packaging code options
 
 - git stash save
 - recursive testing
+
+
 
 //OK, so when I run my game, I want to:
 //1. prompt a player to enter a number

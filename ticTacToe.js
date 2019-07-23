@@ -57,6 +57,9 @@ const singlePlay1 = () => { //single play easy mode
           game.currentPlay++
           singlePlay1()
         }
+      } else {
+        console.log(`Invalid input, please try again \n`);
+        singlePlay1()
       }
     })
   }
@@ -94,16 +97,16 @@ const menu = () => {
 const difficultyMode = () => {
   rl.question('Pick a difficulty level: \n[1] Easy \n[2] Moderate \n[3] Difficult\n', (input) => {
     switch(input) {
-      case 1:
+      case "1": //
         singlePlay1()
         break
-      case 2:
+      case "2":
         console.log("Work in progress");
         // singlePlay2()
         break
-      case 3:
+      case "3":
       console.log("Work in progress");
-        // singlePlay3()
+        singlePlay3()
         break
       default:
         singlePlay1()

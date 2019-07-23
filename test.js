@@ -87,3 +87,8 @@ it('determines if the game is a draw', () => {
   grid = ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
   assert.equal(game.draw(grid), true)
 })
+
+//The game should take the available plays
+//Evaluate whether the spot it chooses will lead to optimal outcome?
+//minimax algo?
+//return the most optimal spot?
