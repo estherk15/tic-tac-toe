@@ -69,20 +69,43 @@ const randomPlay = (array, randomizerFn) => {
 //Math.random(), returns a float between 0 and 1
 
 //Single Player Unbeatable Mode ===========================
-const defense = (array) => {//can only be an array of three
-  let canWin = false
-  if(array.includes("O")){//if there's an O, there is no winning combination here
-    return canWin
-  }
-  if((array[0] === array[1]) || (array[0] === array[2]) || (array[1] === array[2])){
-    canWin = true
-  }
+// const defense = (array) => {//can only be an array of three
+//   let canWin = false
+//   if(array.includes("O")){//if there's an O, there is no winning combination here
+//     return canWin
+//   }
+//   if((array[0] === array[1]) || (array[0] === array[2]) || (array[1] === array[2])){
+//     canWin = true
+//   }
+//
+//   return canWin
+// }
+//
+// const offense = (array) => {
+//   let canWin = false
+//   if(array.includes("X")){
+//     return canWin
+//   }
+//   if((array[0] === array[1]) || (array[0] === array[2]) || (array[1] === array[2])){
+//     canWin = true
+//   }
+//   return canWin
+// }
 
-  return canWin
-}
-
-const offense = (array) => {
-
+const winningMove = (currentBoard) => {
+  let possiblePlays = availablePlays(currentBoard)
+  let winningSpot = null
+  possiblePlays.forEach(spot => {
+    const copyBoard = currentBoard
+    copyBoard[spot - 1] = "O" //this replaces one of the empty spots with the current tokens
+    console.log(copyBoard);
+    console.log(spot);
+    if(checkForWin(copyBoard)){
+      winningSpot = spot
+      return
+    }
+  })
+  return winningSpot
 }
 
 //Validations ===========================================
@@ -113,6 +136,7 @@ module.exports = {
   draw,
   availablePlays,
   randomPlay,
-  defense,
-  offense,
+  // defense,
+  // offense,
+  winningMove,
 }

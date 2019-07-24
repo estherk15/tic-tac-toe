@@ -100,28 +100,45 @@ it('determines if the game is a draw', () => {
   assert.equal(game.draw(grid), true)
 })
 
-it('determines if "X" takes up two of the three spots', () => {
-  testGame1 = ["X", "O", 3]
-  testGame2 = ["X", "X", 3]
-  testGame3 = ["X", 1, "X"]
-  testGame4 = ["O", 1, "X"]
-  assert.equal(game.defense(testGame1), false)
-  assert.equal(game.defense(testGame2), true)
-  assert.equal(game.defense(testGame3), true)
-  assert.equal(game.defense(testGame4), false)
-})
-//I just want to see if I can evaluate whether two of the three are X
+// it('determines if "X" takes up two of the three spots', () => {
+//   testGame1 = ["X", "O", 3]
+//   testGame2 = ["X", "X", 3]
+//   testGame3 = ["X", 1, "X"]
+//   testGame4 = ["O", 1, "X"]
+//   assert.equal(game.defense(testGame1), false)
+//   assert.equal(game.defense(testGame2), true)
+//   assert.equal(game.defense(testGame3), true)
+//   assert.equal(game.defense(testGame4), false)
+// })
+// //I just want to see if I can evaluate whether two of the three are X
+//
+// it('determines if "O" takes up two of the three spots', () => {
+//   testGame1 = ["O", "O", 3]
+//   testGame2 = ["X", "X", 3]
+//   testGame3 = ["X", 1, "O"]
+//   testGame4 = ["O", 1, "O"]
+//   assert.equal(game.offense(testGame1), true)
+//   assert.equal(game.offense(testGame2), false)
+//   assert.equal(game.offense(testGame3), false)
+//   assert.equal(game.offense(testGame4), true)
+// })
 
-it('determines if "O" takes up two of the three spots', () => {
-  testGame1 = ["O", "O", 3]
-  testGame2 = ["X", "X", 3]
-  testGame3 = ["X", 1, "X"]
-  testGame4 = ["O", 1, "O"]
-  assert.equal(game.offense(testGame1), true)
-  assert.equal(game.offense(testGame2), false)
-  assert.equal(game.offense(testGame3), false)
-  assert.equal(game.offense(testGame4), true)
+it('returns the spot that will lead to a winning game', () => {
+  testGame1 = ["X", "O", "X", "X", "O", "X", "O", 8, 9]
+  // testGame2 = ["X", "O", "X", 4, "X", "O", "O", "X", 9]
+  assert.equal(game.winningMove(testGame1), 9)
+  // assert.equal(game.winningMove(testGame2), 9)
 })
+
+// X O X
+// X O X
+// O
+//
+// X O X
+//   X O
+// O X
+
+//if the above are the boards you're dealt, what move will be optimal? What will lead to a win if filled
 
 //iterate thru each winningCombo and evaluate if the current
 
@@ -131,3 +148,5 @@ it('determines if "O" takes up two of the three spots', () => {
 //winning combination looks at three elements of the board,
   //if there is one "X" and one "O", then I don't care
   //If there are two of the same values, then I do care.
+
+  //Next step: create a fn that will identify which winningcombo a player mostly closely matches and place O token in the available spot (either defensively or offensively)

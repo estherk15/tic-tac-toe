@@ -24,6 +24,8 @@ packaging code options
 - git stash save
 - recursive testing
 
+- delay O's move on single player easy mode. setTimeout
+
 
 
 //OK, so when I run my game, I want to:

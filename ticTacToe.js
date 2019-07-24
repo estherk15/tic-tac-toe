@@ -84,7 +84,7 @@ const singlePlay1 = () => { //single play easy mode
 }//singlePlay1
 
 const singlePlay3 = () => { //Unbeatable mode
-  console.log("Trying to figure out minimax algos! Come back later ^_^");
+  console.log("Trying to figure it out! Come back later ^_^");
 }
 
 //Game Options and Menus ==================================
