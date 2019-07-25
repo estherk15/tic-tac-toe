@@ -84,16 +84,21 @@ const singlePlay1 = () => { //single play easy mode
 }//singlePlay1
 
 const singlePlay3 = () => { //Unbeatable mode
-  console.log("Trying to figure out minimax algos! Come back later ^_^");
+  console.log("Trying to figure it out! Come back later ^_^");
 }
 
 //Game Options and Menus ==================================
 const menu = () => {
   rl.question('[1] Single Player \n[2] Multi Player \n :', (input) => {
-    if(input == 1) { //if it's a single player, go to the difficulty menu
-      difficultyMode()
-    } else { //if it's a standard, go to the game
-      gamePlay()
+    switch(input){
+      case "1":  //if it's a single player, go to the difficulty menu
+        difficultyMode()
+        break
+      case "2":
+        gamePlay()
+        break
+      default:
+        menu()
     }
   })
 }
