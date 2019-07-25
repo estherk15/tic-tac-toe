@@ -96,14 +96,15 @@ const winningMove = (currentBoard) => {
   let possiblePlays = availablePlays(currentBoard)
   let winningSpot = null
   possiblePlays.forEach(spot => {
-    const copyBoard = currentBoard
-    copyBoard[spot - 1] = "O" //this replaces one of the empty spots with the current tokens
+    const copyBoard = [...currentBoard]
+    copyBoard[spot - 1] = "X" //this replaces one of the empty spots with the current tokens
     console.log(copyBoard);
     console.log(spot);
     if(checkForWin(copyBoard)){
       winningSpot = spot
       return
     }
+    return
   })
   return winningSpot
 }
