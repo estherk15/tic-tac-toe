@@ -127,8 +127,8 @@ it('returns the spot that will lead to a winning game', () => {
   testGame1 = ["X", "O", "X", "X", "O", "X", "O", 8, 9]
   testGame2 = ["X", "O", "X", 4, "X", "O", "O", "X", 9]
   testGame3 = ["X", 2, "X", 4, 5, 6, 7, 8, 9]
-  assert.equal(game.winningMove(testGame1), 9)
-  assert.equal(game.winningMove(testGame2), 9)
+  assert.equal(game.winningMove(testGame1, "X", 9)
+  assert.equal(game.winningMove(testGame2, "X"), 9)
   assert.equal(game.winningMove(testGame3), 2)
 })
 

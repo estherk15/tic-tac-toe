@@ -69,29 +69,6 @@ const randomPlay = (array, randomizerFn) => {
 //Math.random(), returns a float between 0 and 1
 
 //Single Player Unbeatable Mode ===========================
-// const defense = (array) => {//can only be an array of three
-//   let canWin = false
-//   if(array.includes("O")){//if there's an O, there is no winning combination here
-//     return canWin
-//   }
-//   if((array[0] === array[1]) || (array[0] === array[2]) || (array[1] === array[2])){
-//     canWin = true
-//   }
-//
-//   return canWin
-// }
-//
-// const offense = (array) => {
-//   let canWin = false
-//   if(array.includes("X")){
-//     return canWin
-//   }
-//   if((array[0] === array[1]) || (array[0] === array[2]) || (array[1] === array[2])){
-//     canWin = true
-//   }
-//   return canWin
-// }
-
 const winningMove = (currentBoard) => {
   let possiblePlays = availablePlays(currentBoard)
   let winningSpot = null
