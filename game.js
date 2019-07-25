@@ -69,22 +69,24 @@ const randomPlay = (array, randomizerFn) => {
 //Math.random(), returns a float between 0 and 1
 
 //Single Player Unbeatable Mode ===========================
-const winningMove = (currentBoard) => {
+const winningMove = (currentBoard, token) => {
   let possiblePlays = availablePlays(currentBoard)
   let winningSpot = null
   possiblePlays.forEach(spot => {
     const copyBoard = [...currentBoard]
-    copyBoard[spot - 1] = "X" //this replaces one of the empty spots with the current tokens
+    copyBoard[spot - 1] = token //this replaces one of the empty spots with the current tokens
     console.log(copyBoard);
     console.log(spot);
     if(checkForWin(copyBoard)){
       winningSpot = spot
       return
     }
-    return
   })
+  console.log(winningSpot)
   return winningSpot
 }
+
+const computerMove
 
 //Validations ===========================================
 const validateNumbers = (num) => {//player can only enter numbers
@@ -117,4 +119,5 @@ module.exports = {
   // defense,
   // offense,
   winningMove,
+
 }
