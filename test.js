@@ -100,46 +100,16 @@ it('determines if the game is a draw', () => {
   assert.equal(game.draw(grid), true)
 })
 
-// it('determines if "X" takes up two of the three spots', () => {
-//   testGame1 = ["X", "O", 3]
-//   testGame2 = ["X", "X", 3]
-//   testGame3 = ["X", 1, "X"]
-//   testGame4 = ["O", 1, "X"]
-//   assert.equal(game.defense(testGame1), false)
-//   assert.equal(game.defense(testGame2), true)
-//   assert.equal(game.defense(testGame3), true)
-//   assert.equal(game.defense(testGame4), false)
-// })
-// //I just want to see if I can evaluate whether two of the three are X
-//
-// it('determines if "O" takes up two of the three spots', () => {
-//   testGame1 = ["O", "O", 3]
-//   testGame2 = ["X", "X", 3]
-//   testGame3 = ["X", 1, "O"]
-//   testGame4 = ["O", 1, "O"]
-//   assert.equal(game.offense(testGame1), true)
-//   assert.equal(game.offense(testGame2), false)
-//   assert.equal(game.offense(testGame3), false)
-//   assert.equal(game.offense(testGame4), true)
-// })
-
 it('returns the spot that will lead to a winning game', () => {
   testGame1 = ["X", "O", "X", "X", "O", "X", "O", 8, 9]
   testGame2 = ["X", "O", "X", 4, "X", "O", "O", "X", 9]
-  testGame3 = ["O", 2, "O", 4, 5, 6, 7, 8, 9]
-  assert.equal(game.winningMove(testGame1, "X"), 9)
+  testGame3 = ["X", 2, "X", 4, 5, 6, 7, 8, 9]
+  assert.equal(game.winningMove(testGame1, "X", 9)
   assert.equal(game.winningMove(testGame2, "X"), 9)
-  assert.equal(game.winningMove(testGame3, "O"), 2)
+  assert.equal(game.winningMove(testGame3), 2)
 })
 
-it('blocks the X from winning', () => {
-  testGame1 = ["X", "O", "X", "X", "O", "X", "O", 8, 9]
-  assert.equal(game.winningMove(testGame1, "X"), 9)
-
-})
-
-//if the O has a winning move(truthy), then place the token at the winning spot, otherwise,
-
+//hello is this saving
 // X O X
 // X O X
 // O
