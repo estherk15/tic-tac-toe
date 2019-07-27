@@ -28,7 +28,6 @@ const gamePlay = () => { //multiplayer mode
       // console.log(`\n`);
 
       if((game.checkForWin(board.standard)) || (game.draw(board.standard))){
-        // const winner = game.currentPlayer(game.currentPlay)
         return gameOver(token)
         //without the return, the game continues to prompt
       }
@@ -83,8 +82,39 @@ const singlePlay1 = () => { //single play easy mode
   }
 }//singlePlay1
 
-const singlePlay3 = () => { //Unbeatable mode
+const singlePlay2 = () => { //Unbeatable mode
   console.log("Trying to figure it out! Come back later ^_^");
+}
+
+const singlePlay3 = () => { //Unbeatable mode
+  const token = game.currentPlayer(game.currentPlay)
+
+  if(token === "X") {
+    rl.question(`\n Player ${token}, your move: `, (input) => {
+      if(game.validatePlay(input, board.standard)){
+        const newBoard = game.move(input, token)
+        console.log(`\n`)
+        board.displayBoard(newBoard)
+
+        if((game.checkForWin(board.standard)) || (game.draw(board.standard))){ //if there is a winner do this:
+          return gameOver(token)
+        } else { //if there isn't a winner do this
+          game.currentPlay++
+          singlePlay1()
+        }
+      } else {
+        console.log(`\n ***Invalid input, please try again***`);
+        singlePlay1()
+      }
+    })
+  }
+  if(token === "O"){
+    const possiblePlays = game.availablePlays(board.standard)
+    if(game.winningMove(board.standard, "O")){
+      game.move
+    }
+  }
+
 }
 
 //Game Options and Menus ==================================

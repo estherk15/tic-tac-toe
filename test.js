@@ -103,13 +103,13 @@ it('determines if the game is a draw', () => {
 it('returns the spot that will lead to a winning game', () => {
   testGame1 = ["X", "O", "X", "X", "O", "X", "O", 8, 9]
   testGame2 = ["X", "O", "X", 4, "X", "O", "O", "X", 9]
-  testGame3 = ["X", 2, "X", 4, 5, 6, 7, 8, 9]
-  assert.equal(game.winningMove(testGame1, "X", 9)
+  testGame3 = ["O", 2, "O", 4, 5, 6, 7, 8, 9]
+  assert.equal(game.winningMove(testGame1, "X"), 9)
   assert.equal(game.winningMove(testGame2, "X"), 9)
-  assert.equal(game.winningMove(testGame3), 2)
+  assert.equal(game.winningMove(testGame3, "O"), 2)
 })
 
-//hello is this saving
+
 // X O X
 // X O X
 // O
