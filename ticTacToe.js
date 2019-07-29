@@ -88,7 +88,7 @@ const singlePlay2 = () => { //Unbeatable mode
 
 const singlePlay3 = () => { //Unbeatable mode
   const token = game.currentPlayer(game.currentPlay)
-
+  console.log(token);
   if(token === "X") {
     rl.question(`\n Player ${token}, your move: `, (input) => {
       if(game.validatePlay(input, board.standard)){
@@ -100,19 +100,41 @@ const singlePlay3 = () => { //Unbeatable mode
           return gameOver(token)
         } else { //if there isn't a winner do this
           game.currentPlay++
-          singlePlay1()
+          singlePlay3()
         }
       } else {
         console.log(`\n ***Invalid input, please try again***`);
-        singlePlay1()
+        singlePlay3()
       }
     })
   }
   if(token === "O"){
+    // console.log("Token is O");
     const possiblePlays = game.availablePlays(board.standard)
-    if(game.winningMove(board.standard, "O")){
-      game.move
+    const offensivePlay = game.winningMove(board.standard, "O")
+    const defensivePlay = game.winningMove(board.standard, "X")
+    const corner = [1, 3, 7, 9]
+
+    if(offensivePlay){
+      //if there is a play that will lead to a win for O, make that move
+      //display that O is the winner,
+      const newBoard = game.move(offensivePlay, token)
+      board.displayBoard(newBoard)
+      return gameOver(token)
+    } else if(defensivePlay){//if the O is defense, then there is no winner yet
+      const newBoard = game.move(defensivePlay, token)
+      board.displayBoard(newBoard)
+      game.currentPlay++
+      singlePlay3()//go back to the beginning
+
+    } else if (game.availablePlays(board.standard).includes(5)){//there's no best defense or offense
+      // console.log("No defense or offense");
+      const newBoard = game.move(5, token)
+      board.displayBoard(newBoard)
+      game.currentPlay++
+      singlePlay3()
     }
+    //otherwise, play the most defensive move on the board.
   }
 
 }
@@ -144,7 +166,7 @@ const difficultyMode = () => {
         // singlePlay2()
         break
       case "3":
-      console.log("Work in progress");
+      // console.log("Work in progress");
         singlePlay3()
         break
       default:
