@@ -109,6 +109,16 @@ it('returns the spot that will lead to a winning game', () => {
   assert.equal(game.winningMove(testGame3, "O"), 2)
 })
 
+it('returns the available corner or middle spot', () => {
+  testGame1 = ["X", 2, 3, 4, 5, 6, 7, 8, 9]
+  testGame2 = [1, 2, 3, 4, "X", 6, 7, 8, 9]
+  //you might need a dependency injection to test of the randomnes of the game?
+
+  assert.equal(game.strategicPlay(testGame1), 5)
+  // assert.equal(game.strategicPlay(testGame2), )
+
+})
+
 
 // X O X
 // X O X

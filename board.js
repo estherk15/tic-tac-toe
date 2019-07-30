@@ -1,5 +1,7 @@
 const grid1 = Array(9).fill("") //grid = ["", "", "", "", "", "", "", "", ""]
 const standard = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+const corners = [1, 3, 7, 9]
+const center = 5
 
 //The board array that is passed into the function is shown.
 const displayBoard = (grid) => {

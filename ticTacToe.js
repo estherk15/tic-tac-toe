@@ -82,9 +82,9 @@ const singlePlay1 = () => { //single play easy mode
   }
 }//singlePlay1
 
-const singlePlay2 = () => { //Unbeatable mode
-  console.log("Trying to figure it out! Come back later ^_^");
-}
+// const singlePlay2 = () => { //Unbeatable mode
+//   console.log("Trying to figure it out! Come back later ^_^");
+// }
 
 const singlePlay3 = () => { //Unbeatable mode
   const token = game.currentPlayer(game.currentPlay)
