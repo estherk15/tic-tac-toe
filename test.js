@@ -3,7 +3,6 @@ const game = require('./game.js')
 const ticTacToe = require('./ticTacToe.js')
 const assert = require('assert')
 
-
 //Rules of the Game
 //validates that numbers are entered
 it('displays a board with numbers', () =>{
@@ -40,27 +39,6 @@ it('returns available spot on the grid',  () => {
   // console.log(game.availablePlays(grid));
   assert.deepStrictEqual(game.availablePlays(grid), [2, 4, 6, 8])
 })
-
-//Given a random index number, the play will return the corresponding element
-it('returns the correct element of a given index', () => {
-  available = [2, 4, 6, 8]
-  randomizerFn = num => num
-  assert.equal(game.randomPlay(available, randomizerFn(5)), undefined)
-  assert.equal(game.randomPlay(available, randomizerFn(3)), 8)
-  // console.log(randomizerFn(0))
-  // assert.equal(game.randomPlay(available, randomizerFn(0)), 2)
-  assert.equal(game.randomPlay(available, randomizerFn(1)), 4)
-  assert.equal(game.randomPlay(available, randomizerFn(2)), 6)
-})
-
-//
-// it('returns the correct element of a given index', () => {
-//   available = [2, 4, 6, 8]
-//   randomizerFn = num => num
-//   console.log(randomizerFn(0));
-//   assert.equal(game.randomPlay(available, randomizerFn(0)), 2)
-//
-// })
 
 //Whose turn is it?
 it('determines which token is next based on how many moves have been made', () => {
@@ -100,6 +78,19 @@ it('determines if the game is a draw', () => {
   assert.equal(game.draw(grid), true)
 })
 
+//Given a random index number, the play will return the corresponding element
+it('returns the correct element of a given index', () => {
+  available = [2, 4, 6, 8]
+  randomizerFn = num => num
+  assert.equal(game.randomPlay(available, randomizerFn(5)), undefined)
+  assert.equal(game.randomPlay(available, randomizerFn(3)), 8)
+  // console.log(randomizerFn(0))
+  // assert.equal(game.randomPlay(available, randomizerFn(0)), 2)
+  assert.equal(game.randomPlay(available, randomizerFn(1)), 4)
+  assert.equal(game.randomPlay(available, randomizerFn(2)), 6)
+})
+
+//Which spot will lead to a win?
 it('returns the spot that will lead to a winning game', () => {
   testGame1 = ["X", "O", "X", "X", "O", "X", "O", 8, 9]
   testGame2 = ["X", "O", "X", 4, "X", "O", "O", "X", 9]
@@ -110,25 +101,15 @@ it('returns the spot that will lead to a winning game', () => {
 })
 
 it('returns the available corner or middle spot', () => {
-  testGame1 = ["X", 2, 3, 4, 5, 6, 7, 8, 9]
+  // testGame1 = ["X", 2, 3, 4, 5, 6, 7, 8, 9]
   testGame2 = [1, 2, 3, 4, "X", 6, 7, 8, 9]
-  //you might need a dependency injection to test of the randomnes of the game?
-
-  assert.equal(game.strategicPlay(testGame1), 5)
-  // assert.equal(game.strategicPlay(testGame2), )
-
+  // testGame3 = ["X", "O", "X", 4, 5, 6, 7, 8, 9]
+  // testGame4 = ["X", "O", "X", 4, "O", 6, 7, "X", 9]
+  // assert.equal(game.strategicPlay(testGame1), 5)
+  assert.equal(game.strategicPlay(testGame2), 1)
+  // assert.equal(game.strategicPlay(testGame3), 5)
+  // assert.equal(game.strategicPlay(testGame4), 7)
 })
-
-
-// X O X
-// X O X
-// O
-//
-// X O X
-//   X O
-// O X
-
-
 
 //if the above are the boards you're dealt, what move will be optimal? What will lead to a win if filled
 

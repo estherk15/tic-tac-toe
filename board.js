@@ -20,4 +20,5 @@ module.exports = {
   displayBoard,
   grid1,
   standard,
+  corners,
  }

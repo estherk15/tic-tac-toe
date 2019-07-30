@@ -54,16 +54,17 @@ const availablePlays = (board) => {//returns an array of available open spots on
       available.push(spot)
     }
   })
+
   return available
 }
 
-const randomPlay = (array, randomizerFn) => {
-  // console.log(randomizerFn);
+const randomPlay = (array, randomizerFn) => {//returns a spot NOT an index
   if(!randomizerFn){
     // console.log("Using random fn");
     const randomizerFn = () => (Math.floor(Math.random() * (array.length)))
     return array[randomizerFn()]
   }
+
   return array[randomizerFn]
 }
 //Math.random(), returns a float between 0 and 1
@@ -74,15 +75,38 @@ const winningMove = (currentBoard, token) => {
   let winningSpot = null
   possiblePlays.forEach(spot => {
     const copyBoard = [...currentBoard]
-    copyBoard[spot - 1] = token 
+    copyBoard[spot - 1] = token
     if(checkForWin(copyBoard)){
       winningSpot = spot
       return
     }
   })
+
   return winningSpot
 }
 
+const strategicPlay = (currentBoard) => {//if the middle spot is open, return it, else return the first available corner
+  const possiblePlays = availablePlays(currentBoard)
+  console.log(possiblePlays);
+  if(possiblePlays.includes(5)){
+    return 5
+  }
+
+  possiblePlays.forEach(spot => {
+    console.log(board.corners)
+    console.log("Before the if", spot);
+    if(board.corners.includes(spot)){
+      console.log("In the if", spot);
+      return spot
+    } else {
+      return
+    }
+  })
+
+  return randomPlay(possiblePlays)
+  console.log("Why are you reading this?");
+
+}
 
 
 //Validations ===========================================
@@ -113,7 +137,6 @@ module.exports = {
   draw,
   availablePlays,
   randomPlay,
-  // defense,
-  // offense,
   winningMove,
+  strategicPlay,
 }
