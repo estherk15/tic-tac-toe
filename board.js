@@ -11,7 +11,7 @@ const displayBoard = (grid) => {
   const line = '-----------'
   const board = ` ${row1}\n ${line}\n ${row2}\n ${line}\n ${row3}`
 
-  // console.log(board);
+  console.log(board);
   return(board)
 }
 
