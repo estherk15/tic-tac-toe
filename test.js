@@ -1,6 +1,6 @@
 const board = require('./board.js')
 const game = require('./game.js')
-const ticTacToe = require('./ticTacToe.js')
+// const ticTacToe = require('./ticTacToe.js')
 const assert = require('assert')
 
 //Rules of the Game
@@ -95,31 +95,49 @@ it('returns the spot that will lead to a winning game', () => {
   testGame1 = ["X", "O", "X", "X", "O", "X", "O", 8, 9]
   testGame2 = ["X", "O", "X", 4, "X", "O", "O", "X", 9]
   testGame3 = ["O", 2, "O", 4, 5, 6, 7, 8, 9]
+  testGame4 = ["X", "O", "X", "X", "O", 6, 7, 8, 9]
+
   assert.equal(game.winningMove(testGame1, "X"), 9)
   assert.equal(game.winningMove(testGame2, "X"), 9)
   assert.equal(game.winningMove(testGame3, "O"), 2)
+  assert.equal(game.winningMove(testGame4, "O"), 8)
 })
 
-it('returns the available corner or middle spot', () => {
-  // testGame1 = ["X", 2, 3, 4, 5, 6, 7, 8, 9]
-  testGame2 = [1, 2, 3, 4, "X", 6, 7, 8, 9]
-  // testGame3 = ["X", "O", "X", 4, 5, 6, 7, 8, 9]
+// X O X
+// X O X
+// O
+//
+// X O X
+// X O
+//   ?
+
+// X O X
+//
+//
+
+// X O X
+//   O
+
+// X O X
+//   O X
+// O X O
+
+//x o
+//o   x
+//x
+//dependecy injection for console.log
+//create a new test file.
+
+it('returns the most strategic move', () => {
+  testGame1 = ["X", "O", "X", 4, 5, 6, 7, 8, 9]
+  testGame2 = ["X", "O", 3, "O", 5, "X", "X", 8, 9]
+  testGame3 = ["X", 2, 3, 4, "O", 6, 7, 8, "X"]
   // testGame4 = ["X", "O", "X", 4, "O", 6, 7, "X", 9]
   // assert.equal(game.strategicPlay(testGame1), 5)
-  assert.equal(game.strategicPlay(testGame2), 1)
-  // assert.equal(game.strategicPlay(testGame3), 5)
+  assert.equal(game.strategicPlay(testGame1), 5)
+  assert.equal(game.strategicPlay(testGame2), 5)
+  assert.equal(game.strategicPlay(testGame3, 2), 2)
   // assert.equal(game.strategicPlay(testGame4), 7)
 })
 
-//if the above are the boards you're dealt, what move will be optimal? What will lead to a win if filled
-
-//iterate thru each winningCombo and evaluate if the current
-
-//See whether the beginning of a winning combination is taking place, whether two of the three requirements has been met by the user
-//Two of the three spots have to be the same, and the third must be available to play.
-//place the move on the third option to prevent a win
-//winning combination looks at three elements of the board,
-  //if there is one "X" and one "O", then I don't care
-  //If there are two of the same values, then I do care.
-
-  //Next step: create a fn that will identify which winningcombo a player mostly closely matches and place O token in the available spot (either defensively or offensively)
+//whatever the player chooses, if the adjacent spots are open, pick

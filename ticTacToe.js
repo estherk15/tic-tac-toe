@@ -63,16 +63,13 @@ const singlePlay1 = () => { //single play easy mode
       }
     })
   }
-  if(token === "O") { //game reaches here
-    //Player O is the computer
-    //Hit the random element from available elements
-    //Place the O at the random spot
+  if(token === "O") {
     const possiblePlays = game.availablePlays(board.standard) //returns an array of all possible plays the computer can make
     const computerMove = game.randomPlay(possiblePlays) //returns the spot that the computer is placing its token
     const newBoard = game.move(computerMove, token)
     console.log(`\n Player O's move: ${computerMove} \n`)
+    // setTimeout(() => board.displayBoard(newBoard), 2500)
     board.displayBoard(newBoard)
-
     if((game.checkForWin(board.standard)) || (game.draw(board.standard))){ //if there is a winner do this:
       return gameOver(token)
     } else { //if there isn't a winner do this
@@ -82,9 +79,6 @@ const singlePlay1 = () => { //single play easy mode
   }
 }//singlePlay1
 
-// const singlePlay2 = () => { //Unbeatable mode
-//   console.log("Trying to figure it out! Come back later ^_^");
-// }
 
 const singlePlay3 = () => { //Unbeatable mode
   const token = game.currentPlayer(game.currentPlay)
@@ -94,7 +88,9 @@ const singlePlay3 = () => { //Unbeatable mode
       if(game.validatePlay(input, board.standard)){
         const newBoard = game.move(input, token)
         console.log(`\n`)
+        console.log("where the display?", newBoard);
         board.displayBoard(newBoard)
+        console.log("should have printee");
 
         if((game.checkForWin(board.standard)) || (game.draw(board.standard))){ //if there is a winner do this:
           return gameOver(token)
@@ -113,7 +109,7 @@ const singlePlay3 = () => { //Unbeatable mode
     const possiblePlays = game.availablePlays(board.standard)
     const offensivePlay = game.winningMove(board.standard, "O")
     const defensivePlay = game.winningMove(board.standard, "X")
-    const corner = [1, 3, 7, 9]
+    const strategicPlay = game.strategicPlay(board.standard)
 
     if(offensivePlay){
       //if there is a play that will lead to a win for O, make that move
@@ -127,10 +123,16 @@ const singlePlay3 = () => { //Unbeatable mode
       game.currentPlay++
       singlePlay3()//go back to the beginning
 
-    } else if (game.availablePlays(board.standard).includes(5)){//there's no best defense or offense
+    } else {//there's no best defense or offense
       // console.log("No defense or offense");
-      const newBoard = game.move(5, token)
+      const newBoard = game.move(strategicPlay, token)
+      console.log("Strategic play", token);
       board.displayBoard(newBoard)
+      // console.log("Board after strategicPlay", newBoard);
+      if((game.checkForWin(board.standard)) || (game.draw(board.standard))){
+        return gameOver(token)
+        //without the return, the game continues to prompt
+      }
       game.currentPlay++
       singlePlay3()
     }

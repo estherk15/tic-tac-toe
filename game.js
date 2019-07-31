@@ -85,27 +85,24 @@ const winningMove = (currentBoard, token) => {
   return winningSpot
 }
 
-const strategicPlay = (currentBoard) => {//if the middle spot is open, return it, else return the first available corner
-  const possiblePlays = availablePlays(currentBoard)
-  console.log(possiblePlays);
-  if(possiblePlays.includes(5)){
+
+
+const strategicPlay = (currentBoard, randomEdge) => {
+  //if there is no immediate danger, and the x has the corner, play the
+  const openSpots = availablePlays(currentBoard)
+
+  if(openSpots.includes(5)){
     return 5
-  }
+  } else {
+    if(!randomEdge){
+      const randomEdge = () => (Math.floor(Math.random() * (board.edges)))
+      return randomEdge()
 
-  possiblePlays.forEach(spot => {
-    console.log(board.corners)
-    console.log("Before the if", spot);
-    if(board.corners.includes(spot)){
-      console.log("In the if", spot);
-      return spot
-    } else {
-      return
+    } else{
+      console.log(randomEdge);
+      return randomEdge
     }
-  })
-
-  return randomPlay(possiblePlays)
-  console.log("Why are you reading this?");
-
+  }
 }
 
 

@@ -1,7 +1,7 @@
 const grid1 = Array(9).fill("") //grid = ["", "", "", "", "", "", "", "", ""]
 const standard = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 const corners = [1, 3, 7, 9]
-const center = 5
+const edges = [2, 4, 6, 8]
 
 //The board array that is passed into the function is shown.
 const displayBoard = (grid) => {
@@ -11,7 +11,7 @@ const displayBoard = (grid) => {
   const line = '-----------'
   const board = ` ${row1}\n ${line}\n ${row2}\n ${line}\n ${row3}`
 
-  console.log(board);
+  // console.log(board);
   return(board)
 }
 
@@ -21,4 +21,5 @@ module.exports = {
   grid1,
   standard,
   corners,
+  edges,
  }
