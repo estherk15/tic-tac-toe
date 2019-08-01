@@ -25,3 +25,9 @@ focus on these this week:
 - git stash save
 
 - delay O's move on single player easy mode. setTimeout
+
+- creating a dependecy injection for a console.log?
+
+
+**Hotwash**
+- Between all the indices and the actual grid numbers, it could become very confusing which functions were returning index numbers vs having to convert them.

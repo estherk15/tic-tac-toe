@@ -103,41 +103,25 @@ it('returns the spot that will lead to a winning game', () => {
   assert.equal(game.winningMove(testGame4, "O"), 8)
 })
 
-// X O X
-// X O X
-// O
-//
-// X O X
-// X O
-//   ?
-
-// X O X
-//
-//
-
-// X O X
-//   O
-
-// X O X
-//   O X
-// O X O
-
-//x o
-//o   x
-//x
-//dependecy injection for console.log
-//create a new test file.
-
 it('returns the most strategic move', () => {
   testGame1 = ["X", "O", "X", 4, 5, 6, 7, 8, 9]
   testGame2 = ["X", "O", 3, "O", 5, "X", "X", 8, 9]
   testGame3 = ["X", 2, 3, 4, "O", 6, 7, 8, "X"]
-  // testGame4 = ["X", "O", "X", 4, "O", 6, 7, "X", 9]
-  // assert.equal(game.strategicPlay(testGame1), 5)
+  testGame4 = ["X", 2, 3, 4, "O", "X", 7, 8, 9]
+
   assert.equal(game.strategicPlay(testGame1), 5)
   assert.equal(game.strategicPlay(testGame2), 5)
   assert.equal(game.strategicPlay(testGame3, 2), 2)
-  // assert.equal(game.strategicPlay(testGame4), 7)
+  assert.equal(game.strategicPlay(testGame4), 3)
 })
 
-//whatever the player chooses, if the adjacent spots are open, pick
+// NEXT MOVE?
+// X
+//   O X
+//
+// ? ? ?
+// ? X ?
+// ? ? ?
+
+//  X
+//  O X

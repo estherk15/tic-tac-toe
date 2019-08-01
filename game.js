@@ -29,7 +29,7 @@ const checkForWin = (grid) => {//check to see if one of the winning combinations
 	winningCombo.some(combo => {
 		if((grid[combo[0]] === "X" || grid[combo[0]] === "O") && grid[combo[0]] === grid[combo[1]] && grid[combo[1]] === grid[combo[2]]){
       winner = true
-    	}
+    }
 	})
 
   return winner
@@ -87,22 +87,50 @@ const winningMove = (currentBoard, token) => {
 
 
 
-const strategicPlay = (currentBoard, randomEdge) => {
-  //if there is no immediate danger, and the x has the corner, play the
+const strategicPlay = (currentBoard, testRandom) => {//determines best play for O when there is neither defensive or offensive play to be made.
+//if there is no immediate danger, play to win, so O should play the middle if available, otherwise play a positions where two out of the three winning positions are still open!
+// let bestPlay
+  const middleCombo = winningCombo.filter(combo => combo.includes(4))
   const openSpots = availablePlays(currentBoard)
-
+  const corners = [0, 2, 6, 8]
+  const diagonal = corners.some(spot => currentBoard[spot] === "X")
   if(openSpots.includes(5)){
+    // console.log("best play", bestPlay);
+    // bestPlay = 5
     return 5
-  } else {
-    if(!randomEdge){
-      const randomEdge = () => (Math.floor(Math.random() * (board.edges)))
-      return randomEdge()
-
-    } else{
-      console.log(randomEdge);
-      return randomEdge
-    }
+  } else if(openSpots.length === 8){
+    // bestPlay = 1
+    return 1
   }
+
+  if(diagonal && (!testRandom)){//if the X is trying to take control of the board by taking the corners, O must make an edge move
+
+    //this doesn't account for the possibility that the edges are empty
+    const randomIdx = Math.floor(Math.random() * 4)
+    return board.edges[randomIdx]
+  } else {
+    return testRandom
+  }
+
+
+
+
+  // } else {
+  //   let bestPlay
+  //   middleCombo.find(combo => {
+  //     if(typeof currentBoard[combo[0]] === "number" && typeof currentBoard[combo[2]] === "number"){
+  //       console.log("This is the combo", combo);
+  //       console.log("This is the best play", currentBoard[combo[0]]);
+  //       bestPlay = currentBoard[combo[0]]
+  //     // return currentBoard[combo[0]]
+  //
+  //     }
+  //     return
+  //   })
+  //   return bestPlay
+  // }
+  // console.log("Best play", bestPlay);
+  // return bestPlay
 }
 
 

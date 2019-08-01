@@ -88,9 +88,7 @@ const singlePlay3 = () => { //Unbeatable mode
       if(game.validatePlay(input, board.standard)){
         const newBoard = game.move(input, token)
         console.log(`\n`)
-        console.log("where the display?", newBoard);
         board.displayBoard(newBoard)
-        console.log("should have printee");
 
         if((game.checkForWin(board.standard)) || (game.draw(board.standard))){ //if there is a winner do this:
           return gameOver(token)
@@ -125,8 +123,8 @@ const singlePlay3 = () => { //Unbeatable mode
 
     } else {//there's no best defense or offense
       // console.log("No defense or offense");
+      console.log("O's strategic play", strategicPlay);
       const newBoard = game.move(strategicPlay, token)
-      console.log("Strategic play", token);
       board.displayBoard(newBoard)
       // console.log("Board after strategicPlay", newBoard);
       if((game.checkForWin(board.standard)) || (game.draw(board.standard))){
