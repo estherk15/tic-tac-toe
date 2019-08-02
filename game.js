@@ -86,51 +86,35 @@ const winningMove = (currentBoard, token) => {
 }
 
 
-
-const strategicPlay = (currentBoard, testRandom) => {//determines best play for O when there is neither defensive or offensive play to be made.
-//if there is no immediate danger, play to win, so O should play the middle if available, otherwise play a positions where two out of the three winning positions are still open!
-// let bestPlay
-  const middleCombo = winningCombo.filter(combo => combo.includes(4))
+const strategicPlay = (currentBoard) => {//determines best play for O when there is neither defensive or offensive play to be made.
+//if there is no immediate danger, play to win, so O should play the middle if available, otherwise play a positions where two out of the three winning positions are still open
   const openSpots = availablePlays(currentBoard)
-  const corners = [0, 2, 6, 8]
-  const diagonal = corners.some(spot => currentBoard[spot] === "X")
-  if(openSpots.includes(5)){
-    // console.log("best play", bestPlay);
-    // bestPlay = 5
-    return 5
-  } else if(openSpots.length === 8){
-    // bestPlay = 1
-    return 1
-  }
+  const randomIdx = (array) => Math.floor(Math.random() * array.length) //apply this to either corners or edges for a random spot
+  let bestMove
 
-  if(diagonal && (!testRandom)){//if the X is trying to take control of the board by taking the corners, O must make an edge move
-
-    //this doesn't account for the possibility that the edges are empty
-    const randomIdx = Math.floor(Math.random() * 4)
-    return board.edges[randomIdx]
+  if(openSpots.includes(5)){ //take the middle if it's open
+    bestMove = 5
+    return bestMove
+  } else if(openSpots.length === 8){ //this might be redundant
+    bestMove = board.corners[randomIdx(board.corners)]
+  } else if((currentBoard[0] === currentBoard[8]) || currentBoard[2] === currentBoard[6]){ //if any of the opposing diagnols are taken
+    //return the first edge
+    bestMove =  board.edges[randomIdx(board.edges)]
+    return bestMove
   } else {
-    return testRandom
+    const middleCombo = winningCombo.filter(combo => combo[1] === 4)
+//look through all the winning combos involving the middle positions
+//if the first and last are empty, then return one of those values
+    middleCombo.find(combo => {
+      if(typeof currentBoard[combo[0]] === "number" && typeof currentBoard[combo[2]] ==="number"){
+
+        bestMove = currentBoard[combo[0]]
+        return combo
+      }
+    })
   }
 
-
-
-
-  // } else {
-  //   let bestPlay
-  //   middleCombo.find(combo => {
-  //     if(typeof currentBoard[combo[0]] === "number" && typeof currentBoard[combo[2]] === "number"){
-  //       console.log("This is the combo", combo);
-  //       console.log("This is the best play", currentBoard[combo[0]]);
-  //       bestPlay = currentBoard[combo[0]]
-  //     // return currentBoard[combo[0]]
-  //
-  //     }
-  //     return
-  //   })
-  //   return bestPlay
-  // }
-  // console.log("Best play", bestPlay);
-  // return bestPlay
+  return bestMove
 }
 
 
