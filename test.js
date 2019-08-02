@@ -6,7 +6,7 @@ const assert = require('assert')
 //Rules of the Game
 //validates that numbers are entered
 it('displays a board with numbers', () =>{
-  assert.deepStrictEqual(board.displayBoard(board.standard),
+  assert.deepStrictEqual(board.displayBoard(board.standard, true),
   "  1 | 2 | 3 \n -----------\n  4 | 5 | 6 \n -----------\n  7 | 8 | 9 ")
 })
 
@@ -104,18 +104,18 @@ it('returns the spot that will lead to a winning game', () => {
 })
 
 it('returns the most strategic move', () => {
-  // testGame1 = ["X", "O", "X", 4, 5, 6, 7, 8, 9]
-  // testGame2 = ["X", "O", 3, "O", 5, "X", "X", 8, 9]
-  // testGame3 = ["X", 2, 3, 4, "O", 6, 7, 8, "X"]
+  testGame1 = ["X", "O", "X", 4, 5, 6, 7, 8, 9]
+  testGame2 = ["X", "O", 3, "O", 5, "X", "X", 8, 9]
+  testGame3 = ["X", 2, 3, 4, "O", 6, 7, 8, "X"]
   testGame4 = ["X", 2, 3, 4, "O", "X", 7, 8, 9]
-  // testGame5 = [1, "X", 3, 4, "O", "X", 7, 8, 9]
+  testGame5 = [1, "X", 3, 4, "O", "X", 7, 8, 9]
 
 //test 3 and 4 should result in the same
-  // assert.equal(game.strategicPlay(testGame1), 5)
-  // assert.equal(game.strategicPlay(testGame2), 5)
-  // assert.equal(game.strategicPlay(testGame3), 2)
+  assert.equal(game.strategicPlay(testGame1), 5)
+  assert.equal(game.strategicPlay(testGame2), 5)
+  assert.equal(game.strategicPlay(testGame3), 2)
   assert.equal(game.strategicPlay(testGame4), 2)
-  // assert.equal(game.strategicPlay(testGame5), 1)
+  assert.equal(game.strategicPlay(testGame5), 1)
 })
 
 // NEXT MOVE?
