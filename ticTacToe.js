@@ -28,7 +28,6 @@ const gamePlay = () => { //multiplayer mode
       // console.log(`\n`);
 
       if((game.checkForWin(board.standard)) || (game.draw(board.standard))){
-        // const winner = game.currentPlayer(game.currentPlay)
         return gameOver(token)
         //without the return, the game continues to prompt
       }
@@ -64,16 +63,13 @@ const singlePlay1 = () => { //single play easy mode
       }
     })
   }
-  if(token === "O") { //game reaches here
-    //Player O is the computer
-    //Hit the random element from available elements
-    //Place the O at the random spot
+  if(token === "O") {
     const possiblePlays = game.availablePlays(board.standard) //returns an array of all possible plays the computer can make
     const computerMove = game.randomPlay(possiblePlays) //returns the spot that the computer is placing its token
     const newBoard = game.move(computerMove, token)
     console.log(`\n Player O's move: ${computerMove} \n`)
+    // setTimeout(() => board.displayBoard(newBoard), 2500)
     board.displayBoard(newBoard)
-
     if((game.checkForWin(board.standard)) || (game.draw(board.standard))){ //if there is a winner do this:
       return gameOver(token)
     } else { //if there isn't a winner do this
@@ -83,8 +79,111 @@ const singlePlay1 = () => { //single play easy mode
   }
 }//singlePlay1
 
+const singlePlay2 = () => { //Unbeatable mode
+  const token = game.currentPlayer(game.currentPlay)
+  if(token === "X") {
+    rl.question(`\n Player ${token}, your move: `, (input) => {
+      if(game.validatePlay(input, board.standard)){
+        const newBoard = game.move(input, token)
+        console.log(`\n`)
+        board.displayBoard(newBoard)
+
+        if((game.checkForWin(board.standard)) || (game.draw(board.standard))){ //if there is a winner do this:
+          return gameOver(token)
+        } else { //if there isn't a winner do this
+          game.currentPlay++
+          singlePlay2()
+        }
+      } else {
+        console.log(`\n ***Invalid input, please try again***`);
+        singlePlay2()
+      }
+    })
+  }
+  if(token === "O"){
+    // console.log("Token is O");
+    const possiblePlays = game.availablePlays(board.standard)
+    const offensivePlay = game.winningMove(board.standard, "O")
+    const defensivePlay = game.winningMove(board.standard, "X")
+    const computerMove = game.randomPlay(possiblePlays)
+
+    if(offensivePlay){
+      const newBoard = game.move(offensivePlay, token)
+      board.displayBoard(newBoard)
+      return gameOver(token)
+    } else if(defensivePlay){//if the O is defense, then there is no winner yet
+      const newBoard = game.move(defensivePlay, token)
+      board.displayBoard(newBoard)
+      game.currentPlay++
+      singlePlay2()//go back to the beginning
+
+    } else {//there's no best defense or offense
+      const newBoard = game.move(computerMove, token)
+      board.displayBoard(newBoard)
+      // console.log("Board after strategicPlay", newBoard);
+      if((game.checkForWin(board.standard)) || (game.draw(board.standard))){
+        return gameOver(token)
+        //without the return, the game continues to prompt
+      }
+      game.currentPlay++
+      singlePlay2()
+    }
+  }
+}//singlePlay2
+
 const singlePlay3 = () => { //Unbeatable mode
-  console.log("Trying to figure it out! Come back later ^_^");
+  const token = game.currentPlayer(game.currentPlay)
+  if(token === "X") {
+    rl.question(`\n Player ${token}, your move: `, (input) => {
+      if(game.validatePlay(input, board.standard)){
+        const newBoard = game.move(input, token)
+        console.log(`\n`)
+        board.displayBoard(newBoard)
+
+        if((game.checkForWin(board.standard)) || (game.draw(board.standard))){ //if there is a winner do this:
+          return gameOver(token)
+        } else { //if there isn't a winner do this
+          game.currentPlay++
+          singlePlay3()
+        }
+      } else {
+        console.log(`\n ***Invalid input, please try again***`);
+        singlePlay3()
+      }
+    })
+  }
+  if(token === "O"){
+    // console.log("Token is O");
+    const possiblePlays = game.availablePlays(board.standard)
+    const offensivePlay = game.winningMove(board.standard, "O")
+    const defensivePlay = game.winningMove(board.standard, "X")
+
+    if(offensivePlay){
+      const newBoard = game.move(offensivePlay, token)
+      board.displayBoard(newBoard)
+      return gameOver(token)
+    } else if(defensivePlay){//if the O is defense, then there is no winner yet
+      const newBoard = game.move(defensivePlay, token)
+      board.displayBoard(newBoard)
+      game.currentPlay++
+      singlePlay3()//go back to the beginning
+
+    } else {//there's no best defense or offense
+      const strategicPlay = game.strategicPlay(board.standard)//returns a spot number
+      console.log("O's strategic play: ", strategicPlay);
+      console.log(`\n`);
+      const newBoard = game.move(strategicPlay, token)
+
+      board.displayBoard(newBoard)
+      // console.log("Board after strategicPlay", newBoard);
+      if((game.checkForWin(board.standard)) || (game.draw(board.standard))){
+        return gameOver(token)
+        //without the return, the game continues to prompt
+      }
+      game.currentPlay++
+      singlePlay3()
+    }
+  }
 }
 
 //Game Options and Menus ==================================
@@ -104,17 +203,16 @@ const menu = () => {
 }
 
 const difficultyMode = () => {
-  rl.question('Pick a difficulty level: \n[1] Easy \n[2] Moderate \n[3] Difficult\n', (input) => {
+  rl.question('Pick a difficulty level: \n[1] Easy \n[2] Difficult \n[3] Unbeatable\n', (input) => {
     switch(input) {
       case "1":
         singlePlay1()
         break
       case "2":
-        console.log("Work in progress");
-        // singlePlay2()
+        singlePlay2()
         break
       case "3":
-      console.log("Work in progress");
+      // console.log("Work in progress");
         singlePlay3()
         break
       default:
