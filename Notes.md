@@ -8,11 +8,24 @@ focus on these this week:
 * Debug why the switch statement won't accept any number other than 1 [**The input is not an integer, it's a string, so each case had to be changed to a string**]
 * Debug the recursive winner message[**resolved**]
 * creating a dependency injection for a console.log?[**resolved**]
+- There's a bug, O's strategic play is undefined when there's no winner/loser/strategy [**Resolved**]
+x x o
+o o x
+x    
 * Create a new test file for building tests for the ticTacToe.js
 * Packaging code options (build readme)
 
 [After Above]
-
+- Solve the randomizerFN test (0 is a falsy value)
+- Clean tests, break them out
+- Refactor game, then set up ESLint, have a run through
+- when you set up ESLint, it should pass, no more than 5 overrides
+- Package ESLint
+- Make a commit before Refactor, make a commit before ESLint
+- Add instructions for the developer, run the tests, Readline,
+- virtualbox, ubuntu.
+- randomizerfn, think about what you're checking for.
+- delay O's move on single player easy mode. setTimeout
 
 
 ***Notes***
@@ -22,29 +35,8 @@ focus on these this week:
 - However!!! Upon winning, the checkForWin runs in a loop multiple times and prints out the message over as many times as there are grid entries
 - You may need to adjust the gamePlay fn, instead of calling the function again and again, looping?
 - usable vs testable, your boardDisplay fn needs to be both, needs to console log the board, but also have something to return so that you can test it.
-
 - git stash save
 
-- delay O's move on single player easy mode. setTimeout
-
-
-
-- There's a bug,
-
-x x o
-o o x
-x            O's strategic play is undefined
-
-- Solve the above building
-- Solve the randomizerFN test (0 is a falsy value)
-- Clean tests, break them out
-- Refactor game, then set up ESLint, have a run through
-- when you set up ESLint, it should pass, no more than 5 overrides
-- Package ESLint.
-- Make a commit before Refactor, make a commit before ESLint
-- Add instructions for the developer, run the tests, Readline,
-- virtualbox, ubuntu.
-- randomizerfn, think about what you're checking for.
 
 **Hotwash**
 - Between all the indices and the actual grid numbers, it could become very confusing which functions were returning index numbers vs having to convert them.

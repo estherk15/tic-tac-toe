@@ -59,13 +59,13 @@ const availablePlays = (board) => {//returns an array of available open spots on
 }
 
 const randomPlay = (array, randomizerFn) => {//returns a spot NOT an index
-  if(!randomizerFn){
+  if(typeof randomizerFn !== "number"){
     // console.log("Using random fn");
+    return array[randomizerFn]
+  } else {
     const randomizerFn = () => (Math.floor(Math.random() * (array.length)))
     return array[randomizerFn()]
   }
-
-  return array[randomizerFn]
 }
 //Math.random(), returns a float between 0 and 1
 
@@ -86,11 +86,16 @@ const winningMove = (currentBoard, token) => {
 }
 
 
-const strategicPlay = (currentBoard) => {//determines best play for O when there is neither defensive or offensive play to be made.
+const strategicPlay = (currentBoard, isTest) => {//determines best play for O when there is neither defensive or offensive play to be made.
 //if there is no immediate danger, play to win, so O should play the middle if available, otherwise play a positions where two out of the three winning positions are still open
   const openSpots = availablePlays(currentBoard)
   const randomIdx = (array) => Math.floor(Math.random() * array.length) //apply this to either corners or edges for a random spot
   let bestMove
+
+  if(isTest){
+    bestMove = isTest
+    return bestMove
+  }
 
   if(openSpots.includes(5)){ //take the middle if it's open
     bestMove = 5
@@ -103,8 +108,8 @@ const strategicPlay = (currentBoard) => {//determines best play for O when there
     return bestMove
   } else {
     const middleCombo = winningCombo.filter(combo => combo[1] === 4)
-//look through all the winning combos involving the middle positions
-//if the first and last are empty, then return one of those values
+    //look through all the winning combos involving the middle positions
+    //if the first and last are empty, then return one of those values
     middleCombo.find(combo => {
       if(typeof currentBoard[combo[0]] === "number" && typeof currentBoard[combo[2]] ==="number"){
 
@@ -113,7 +118,7 @@ const strategicPlay = (currentBoard) => {//determines best play for O when there
       }
     })
   }
-  if (!bestMove) {
+  if (!bestMove) {//Even when a draw is inevitable, output a play
     bestMove = openSpots[randomIdx(openSpots)]
   }
 
