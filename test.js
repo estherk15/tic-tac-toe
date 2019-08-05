@@ -85,7 +85,7 @@ it('returns the correct element of a given index', () => {
   assert.equal(game.randomPlay(available, randomizerFn(5)), undefined)
   assert.equal(game.randomPlay(available, randomizerFn(3)), 8)
   // console.log(randomizerFn(0))
-  // assert.equal(game.randomPlay(available, randomizerFn(0)), 2)
+  //assert.equal(game.randomPlay(available, randomizerFn(0)), 2)
   assert.equal(game.randomPlay(available, randomizerFn(1)), 4)
   assert.equal(game.randomPlay(available, randomizerFn(2)), 6)
 })
@@ -117,14 +117,3 @@ it('returns the most strategic move', () => {
   assert.equal(game.strategicPlay(testGame4), 2)
   assert.equal(game.strategicPlay(testGame5), 1)
 })
-
-// NEXT MOVE?
-// X
-//   O X
-//
-// ? ? ?
-// ? X ?
-// ? ? ?
-
-//  X
-//  O X

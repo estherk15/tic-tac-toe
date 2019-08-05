@@ -7,6 +7,7 @@ focus on these this week:
 * Debug the game not checking for winners [**resolved** fn were referencing grid1 and not directionsGrid].
 * Debug why the switch statement won't accept any number other than 1 [**The input is not an integer, it's a string, so each case had to be changed to a string**]
 * Debug the recursive winner message[**resolved**]
+* creating a dependency injection for a console.log?[**resolved**]
 * Create a new test file for building tests for the ticTacToe.js
 * Packaging code options (build readme)
 
@@ -26,8 +27,28 @@ focus on these this week:
 
 - delay O's move on single player easy mode. setTimeout
 
-- creating a dependecy injection for a console.log?
 
+
+- There's a bug,
+
+x x o
+o o x
+x            O's strategic play is undefined
+
+- Solve the above building
+- Solve the randomizerFN test (0 is a falsy value)
+- Clean tests, break them out
+- Refactor game, then set up ESLint, have a run through
+- when you set up ESLint, it should pass, no more than 5 overrides
+- Package ESLint.
+- Make a commit before Refactor, make a commit before ESLint
+- Add instructions for the developer, run the tests, Readline,
+- virtualbox, ubuntu.
+- randomizerfn, think about what you're checking for.
 
 **Hotwash**
 - Between all the indices and the actual grid numbers, it could become very confusing which functions were returning index numbers vs having to convert them.
+
+- I didn't have as much awareness of what the readline built in CLI stuff was doing in the background.
+
+-

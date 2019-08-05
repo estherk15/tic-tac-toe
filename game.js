@@ -113,6 +113,9 @@ const strategicPlay = (currentBoard) => {//determines best play for O when there
       }
     })
   }
+  if (!bestMove) {
+    bestMove = openSpots[randomIdx(openSpots)]
+  }
 
   return bestMove
 }

@@ -16,6 +16,18 @@ const gameOver = (winner) => {
     return rl.close()
   }
 }
+//
+// const userTurn = () => {
+//   if(game.validatePlay(input, board.standard)){ //checks to make sure you enter a number w/i range
+//     const newBoard = game.move(input, token) //updates the grid by putting player token at desired location
+//     console.log(`\n`)
+//     board.displayBoard(this.newBoard) //displays the new grid on console.
+//     // console.log(`\n`);
+//     if((game.checkForWin(board.standard)) || (game.draw(board.standard))){
+//       return gameOver(token)
+//       //without the return, the game continues to prompt
+//     }
+// }
 
 //Multplayer mode ==================================
 const gamePlay = () => { //multiplayer mode
@@ -24,9 +36,9 @@ const gamePlay = () => { //multiplayer mode
     if(game.validatePlay(input, board.standard)){ //checks to make sure you enter a number w/i range
       const newBoard = game.move(input, token) //updates the grid by putting player token at desired location
       console.log(`\n`)
+      console.log("What is this?", this);
       board.displayBoard(newBoard) //displays the new grid on console.
       // console.log(`\n`);
-
       if((game.checkForWin(board.standard)) || (game.draw(board.standard))){
         return gameOver(token)
         //without the return, the game continues to prompt
