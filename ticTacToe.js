@@ -7,6 +7,8 @@ const rl = readline.createInterface({ //rl is the CLI program that outputs in th
   output: process.stdout,
 })
 
+let gameMode //what difficulty is being played
+
 const gameOver = (winner) => {
   if(!!game.checkForWin(board.standard)){
     console.log(` Player [${winner}] You Win!!!`)
@@ -17,55 +19,42 @@ const gameOver = (winner) => {
   }
 }
 
-//Multplayer mode ==================================
-const gamePlay = () => { //multiplayer mode
-  const token = game.currentPlayer(game.currentPlay)
+const playerPrompt = (token) => {
   rl.question(`\n Player ${token}, your move:  `, (input) => {
-    if(game.validatePlay(input, board.standard)){ //checks to make sure you enter a number w/i range
-      const newBoard = game.move(input, token) //updates the grid by putting player token at desired location
+    if(game.validatePlay(input, board.standard)){
+      const newBoard = game.move(input, token)
       console.log(`\n`)
-      console.log("What is this?", this);
-      board.displayBoard(newBoard) //displays the new grid on console.
+      board.displayBoard(newBoard)
       // console.log(`\n`);
       if((game.checkForWin(board.standard)) || (game.draw(board.standard))){
         return gameOver(token)
-        //without the return, the game continues to prompt
       }
       game.currentPlay++
-      gamePlay()
+      gameMode()
     } else { //if the input is not valid
       console.log(`\n ***Invalid input, please try again***`);
-      gamePlay()
+      gameMode()
     }
   })
 }
 
+//Multplayer mode ==================================
+const multiPlay = () => { //multiplayer mode
+  const token = game.currentPlayer(game.currentPlay)
+  gameMode = multiPlay
+  playerPrompt(token)
+}
+
 //Singleplayer mode ================================
 const singlePlay1 = () => { //single play easy mode
+  gameMode = singlePlay1
   const token = game.currentPlayer(game.currentPlay)
-
   if(token === "X") {
-    rl.question(`\n Player ${token}, your move: `, (input) => {
-      if(game.validatePlay(input, board.standard)){
-        const newBoard = game.move(input, token)
-        console.log(`\n`)
-        board.displayBoard(newBoard)
-
-        if((game.checkForWin(board.standard)) || (game.draw(board.standard))){ //if there is a winner do this:
-          return gameOver(token)
-        } else { //if there isn't a winner do this
-          game.currentPlay++
-          singlePlay1()
-        }
-      } else {
-        console.log(`\n ***Invalid input, please try again***`);
-        singlePlay1()
-      }
-    })
+    playerPrompt(token)
   }
   if(token === "O") {
-    const possiblePlays = game.availablePlays(board.standard) //returns an array of all possible plays the computer can make
-    const computerMove = game.randomPlay(possiblePlays) //returns the spot that the computer is placing its token
+    const openSpots = game.availablePlays(board.standard) //returns an array of all possible plays the computer can make
+    const computerMove = game.randomPlay(openSpots) //returns the spot that the computer is placing its token
     const newBoard = game.move(computerMove, token)
     console.log(`\n Player O's move: ${computerMove} \n`)
     // setTimeout(() => board.displayBoard(newBoard), 2500)
@@ -102,10 +91,10 @@ const singlePlay2 = () => { //Unbeatable mode
   }
   if(token === "O"){
     // console.log("Token is O");
-    const possiblePlays = game.availablePlays(board.standard)
+    const openSpots = game.availablePlays(board.standard)
     const offensivePlay = game.winningMove(board.standard, "O")
     const defensivePlay = game.winningMove(board.standard, "X")
-    const computerMove = game.randomPlay(possiblePlays)
+    const computerMove = game.randomPlay(openSpots)
 
     if(offensivePlay){
       const newBoard = game.move(offensivePlay, token)
@@ -154,7 +143,7 @@ const singlePlay3 = () => { //Unbeatable mode
   }
   if(token === "O"){
     // console.log("Token is O");
-    const possiblePlays = game.availablePlays(board.standard)
+    const openSpots = game.availablePlays(board.standard)
     const offensivePlay = game.winningMove(board.standard, "O")
     const defensivePlay = game.winningMove(board.standard, "X")
 
@@ -194,7 +183,7 @@ const menu = () => {
         difficultyMode()
         break
       case "2":
-        gamePlay()
+        multiPlay()
         break
       default:
         menu()
