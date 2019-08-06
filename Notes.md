@@ -33,7 +33,7 @@ x
 - The gamePlay fn now has access to the current play and the token, so it distributes the information to the fn.
 - Found the branch with updated functions to toggle between 'X' and 'O'
 - However!!! Upon winning, the checkForWin runs in a loop multiple times and prints out the message over as many times as there are grid entries
-- You may need to adjust the gamePlay fn, instead of calling the function again and again, looping?
+- You may need to adjust the gamePlay fn, instead of calling the function again and again, looping? [**Resolved** got rid of the on.line fn]
 - usable vs testable, your boardDisplay fn needs to be both, needs to console log the board, but also have something to return so that you can test it.
 - git stash save
 
@@ -43,4 +43,4 @@ x
 
 - I didn't have as much awareness of what the readline built in CLI stuff was doing in the background.
 
--
+- s
