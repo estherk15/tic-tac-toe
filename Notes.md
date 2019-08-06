@@ -12,12 +12,12 @@ focus on these this week:
 x x o
 o o x
 x    
+- Clean tests, break them out [**Resolved**]
 * Create a new test file for building tests for the ticTacToe.js
 * Packaging code options (build readme)
 
 [After Above]
 - Solve the randomizerFN test (0 is a falsy value)
-- Clean tests, break them out
 - Refactor game, then set up ESLint, have a run through
 - when you set up ESLint, it should pass, no more than 5 overrides
 - Package ESLint

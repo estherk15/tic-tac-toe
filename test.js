@@ -34,7 +34,6 @@ describe('Validations', () => {
     })
 
     it('returns false if input already has a token', () => {
-      // board.grid1 = ["O", 2, "X", 4, "X", 6, "O", 8, "X"]
       assert.equal(game.validatePlay(1, board.grid1), false)
       assert.equal(game.validatePlay(9, board.grid1), false)
     })
@@ -65,7 +64,6 @@ describe('Game play', () => {
       assert.deepStrictEqual(game.move(1, "O"), ["O", 2, 3, 4, 5, 6, 7, 8, 9])
     })
     it('puts the correct token onto selected grid spot', () => {
-      // assert.deepStrictEqual(game.move(1, "O"), ["O", 2, 3, 4, 5, 6, 7, 8, 9])
       assert.deepStrictEqual(game.move(2, "X"), ["O", "X", 3, 4, 5, 6, 7, 8, 9])
     })
   })
@@ -115,19 +113,18 @@ describe('Game play', () => {
   describe('#randomPlay()', () => {
     //Given a random index number, the play will return the corresponding element
     const available = [2, 4, 6, 8]
-    const randomizerFn = num => num
+
     it('returns the correct element of a given index', () => {
-      assert.equal(game.randomPlay(available, randomizerFn(3)), 8)
-      assert.equal(game.randomPlay(available, randomizerFn(1)), 4)
-      assert.equal(game.randomPlay(available, randomizerFn(2)), 6)
+      assert.equal(game.randomPlay(available, 3), 8)
+      assert.equal(game.randomPlay(available, 1), 4)
+      assert.equal(game.randomPlay(available, 2), 6)
     })
     it('returns undefined for an index outside the length of the array', () => {
-      assert.equal(game.randomPlay(available, randomizerFn(5)), undefined)
+      assert.equal(game.randomPlay(available, 5), undefined)
     })
 
     it('returns the correct element if index is 0', () => {
-      // console.log(randomizerFn(0))
-      assert.equal(game.randomPlay(available, randomizerFn(0)), 2)
+      assert.equal(game.randomPlay(available, 0), 2)
     })
   })
   describe('#winningMove()', () => {
@@ -136,16 +133,16 @@ describe('Game play', () => {
     const testGame3 = ["O", 2, "O", 4, 5, 6, 7, 8, 9]
     const testGame4 = ["X", "O", "X", "X", "O", 6, 7, 8, 9]
     //Which spot will lead to a win?
-    it('returns the spot that will lead to a winning game', () => {
+    it('returns the spot that will lead to "X" winning game', () => {
       assert.equal(game.winningMove(testGame1, "X"), 9)
     })
-    it('returns the spot that will lead to a winning game', () => {
+    it('returns the spot that will lead to "X" winning game', () => {
       assert.equal(game.winningMove(testGame2, "X"), 9)
     })
-    it('returns the spot that will lead to a winning game', () => {
+    it('returns the spot that will lead to "O" winning game', () => {
       assert.equal(game.winningMove(testGame3, "O"), 2)
     })
-    it('returns the spot that will lead to a winning game', () => {
+    it('returns the spot that will lead to "O" winning game', () => {
       assert.equal(game.winningMove(testGame4, "O"), 8)
     })
   })

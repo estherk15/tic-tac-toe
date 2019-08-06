@@ -58,13 +58,13 @@ const availablePlays = (board) => {//returns an array of available open spots on
   return available
 }
 
-const randomPlay = (array, randomizerFn) => {//returns a spot NOT an index
-  if(typeof randomizerFn !== "number"){
-    // console.log("Using random fn");
-    return array[randomizerFn]
+const randomPlay = (array, testIdx) => {//returns a spot NOT an index
+  if(typeof testIdx === "number"){
+    // console.log("Using random fn", testIdx);
+    return array[testIdx]
   } else {
-    const randomizerFn = () => (Math.floor(Math.random() * (array.length)))
-    return array[randomizerFn()]
+    const randomIdx = (Math.floor(Math.random() * (array.length)))
+    return array[randomIdx]
   }
 }
 //Math.random(), returns a float between 0 and 1
@@ -92,7 +92,7 @@ const strategicPlay = (currentBoard, isTest) => {//determines best play for O wh
   const randomIdx = (array) => Math.floor(Math.random() * array.length) //apply this to either corners or edges for a random spot
   let bestMove
 
-  if(isTest){
+  if(isTest){//dependency injection to test any fn requireing random.
     bestMove = isTest
     return bestMove
   }
