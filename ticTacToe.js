@@ -71,27 +71,11 @@ const singlePlay1 = () => { //single play easy mode
 
 const singlePlay2 = () => { //Unbeatable mode
   const token = game.currentPlayer(game.currentPlay)
+  gameMode = singlePlay2
   if(token === "X") {
-    rl.question(`\n Player ${token}, your move: `, (input) => {
-      if(game.validatePlay(input, board.standard)){
-        const newBoard = game.move(input, token)
-        console.log(`\n`)
-        board.displayBoard(newBoard)
-
-        if((game.checkForWin(board.standard)) || (game.draw(board.standard))){ //if there is a winner do this:
-          return gameOver(token)
-        } else { //if there isn't a winner do this
-          game.currentPlay++
-          singlePlay2()
-        }
-      } else {
-        console.log(`\n ***Invalid input, please try again***`);
-        singlePlay2()
-      }
-    })
+    playerPrompt(token)
   }
   if(token === "O"){
-    // console.log("Token is O");
     const openSpots = game.availablePlays(board.standard)
     const offensivePlay = game.winningMove(board.standard, "O")
     const defensivePlay = game.winningMove(board.standard, "X")
@@ -99,21 +83,22 @@ const singlePlay2 = () => { //Unbeatable mode
 
     if(offensivePlay){
       const newBoard = game.move(offensivePlay, token)
+      console.log(`\n Player O's move: ${offensivePlay}`)
       board.displayBoard(newBoard)
       return gameOver(token)
     } else if(defensivePlay){//if the O is defense, then there is no winner yet
       const newBoard = game.move(defensivePlay, token)
+      console.log(`\n Player O's move: ${defensivePlay}`)
       board.displayBoard(newBoard)
       game.currentPlay++
       singlePlay2()//go back to the beginning
 
     } else {//there's no best defense or offense
       const newBoard = game.move(computerMove, token)
+      console.log(`\n Player O's move: ${computerMove}`)
       board.displayBoard(newBoard)
-      // console.log("Board after strategicPlay", newBoard);
       if((game.checkForWin(board.standard)) || (game.draw(board.standard))){
         return gameOver(token)
-        //without the return, the game continues to prompt
       }
       game.currentPlay++
       singlePlay2()
@@ -123,6 +108,7 @@ const singlePlay2 = () => { //Unbeatable mode
 
 const singlePlay3 = () => { //Unbeatable mode
   const token = game.currentPlayer(game.currentPlay)
+  gameMode = singlePlay3
   if(token === "X") {
     rl.question(`\n Player ${token}, your move: `, (input) => {
       if(game.validatePlay(input, board.standard)){
