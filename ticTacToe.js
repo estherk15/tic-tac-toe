@@ -23,7 +23,7 @@ const playerPrompt = (token) => {
   rl.question(`\n Player ${token}, your move:  `, (input) => {
     if(game.validatePlay(input, board.standard)){
       const newBoard = game.move(input, token)
-      console.log(`\n`)
+      // console.log(`\n`)
       board.displayBoard(newBoard)
       // console.log(`\n`);
       if((game.checkForWin(board.standard)) || (game.draw(board.standard))){
@@ -45,7 +45,7 @@ const multiPlay = () => { //multiplayer mode
   playerPrompt(token)
 }
 
-//Singleplayer mode ================================
+//Singleplayer Easy mode ================================
 const singlePlay1 = () => { //single play easy mode
   gameMode = singlePlay1
   const token = game.currentPlayer(game.currentPlay)
@@ -56,8 +56,9 @@ const singlePlay1 = () => { //single play easy mode
     const openSpots = game.availablePlays(board.standard) //returns an array of all possible plays the computer can make
     const computerMove = game.randomPlay(openSpots) //returns the spot that the computer is placing its token
     const newBoard = game.move(computerMove, token)
-    console.log(`\n Player O's move: ${computerMove} \n`)
+    console.log(`\n Player O's move: ${computerMove}`)
     // setTimeout(() => board.displayBoard(newBoard), 2500)
+    // console.log(`\n`)
     board.displayBoard(newBoard)
     if((game.checkForWin(board.standard)) || (game.draw(board.standard))){ //if there is a winner do this:
       return gameOver(token)
