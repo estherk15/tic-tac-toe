@@ -9,13 +9,18 @@ Contents
 * Installation
 * Testing Framework
 *
-* Playing the game 
+* Playing the game
 
 
 
 ## Installation
 
 To begin, fork this repository and clone it into your local drive. Once you clone it, open up your terminal/command line and CD into the folder, enter ```node ticTacToe``` to begin playing!
+
+## Testing Framework
+
+The programs uses the Mocha.js testing framework, along with the built-in Node assertion library.
+
 
 ## Using the Application
 
