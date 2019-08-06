@@ -11,7 +11,7 @@ let gameMode //what difficulty is being played
 
 const gameOver = (winner) => {
   if(!!game.checkForWin(board.standard)){
-    console.log(` Player [${winner}] You Win!!!`)
+    console.log(` Player [${winner}] is the Winner!!!`)
     return rl.close()
   } else if (game.draw(board.standard)){
     console.log('\n It\'s a tie, you\'re both winners! Huzzah!')
@@ -23,9 +23,7 @@ const playerPrompt = (token) => {
   rl.question(`\n Player ${token}, your move:  `, (input) => {
     if(game.validatePlay(input, board.standard)){
       const newBoard = game.move(input, token)
-      // console.log(`\n`)
       board.displayBoard(newBoard)
-      // console.log(`\n`);
       if((game.checkForWin(board.standard)) || (game.draw(board.standard))){
         return gameOver(token)
       }
@@ -110,51 +108,32 @@ const singlePlay3 = () => { //Unbeatable mode
   const token = game.currentPlayer(game.currentPlay)
   gameMode = singlePlay3
   if(token === "X") {
-    rl.question(`\n Player ${token}, your move: `, (input) => {
-      if(game.validatePlay(input, board.standard)){
-        const newBoard = game.move(input, token)
-        console.log(`\n`)
-        board.displayBoard(newBoard)
-
-        if((game.checkForWin(board.standard)) || (game.draw(board.standard))){ //if there is a winner do this:
-          return gameOver(token)
-        } else { //if there isn't a winner do this
-          game.currentPlay++
-          singlePlay3()
-        }
-      } else {
-        console.log(`\n ***Invalid input, please try again***`);
-        singlePlay3()
-      }
-    })
+    playerPrompt(token)
   }
   if(token === "O"){
-    // console.log("Token is O");
     const openSpots = game.availablePlays(board.standard)
     const offensivePlay = game.winningMove(board.standard, "O")
     const defensivePlay = game.winningMove(board.standard, "X")
 
     if(offensivePlay){
       const newBoard = game.move(offensivePlay, token)
+      console.log(`\n Player O's move: ${offensivePlay}`)
       board.displayBoard(newBoard)
       return gameOver(token)
     } else if(defensivePlay){//if the O is defense, then there is no winner yet
       const newBoard = game.move(defensivePlay, token)
+      console.log(`\n Player O's move: ${defensivePlay}`)
       board.displayBoard(newBoard)
       game.currentPlay++
-      singlePlay3()//go back to the beginning
+      singlePlay3()
 
     } else {//there's no best defense or offense
-      const strategicPlay = game.strategicPlay(board.standard)//returns a spot number
-      console.log("O's strategic play: ", strategicPlay);
-      console.log(`\n`);
+      const strategicPlay = game.strategicPlay(board.standard)
       const newBoard = game.move(strategicPlay, token)
-
+      console.log(`\n Player O's move: ${strategicPlay}`)
       board.displayBoard(newBoard)
-      // console.log("Board after strategicPlay", newBoard);
       if((game.checkForWin(board.standard)) || (game.draw(board.standard))){
         return gameOver(token)
-        //without the return, the game continues to prompt
       }
       game.currentPlay++
       singlePlay3()

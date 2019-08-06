@@ -27,6 +27,8 @@ x
 - randomizerfn, think about what you're checking for.
 - delay O's move on single player easy mode. setTimeout
 
+- Do another round of refactoring for the sinplePlay fn.
+
 
 ***Notes***
 - The move function no longer worries about the token, it's given the token from the gamePlay fn and all it does is to replace the board with the given token.
