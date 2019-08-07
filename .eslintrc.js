@@ -7,7 +7,7 @@ module.exports = {
         "mocha": true,
 
     },
-    "extends": "eslint:recommended",
+    "extends": "eslint-config-google",
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
@@ -16,6 +16,7 @@ module.exports = {
         "ecmaVersion": 2018
     },
     "rules": {
-      "no-console": 1
+      "no-console": 1,
+      "complexity": ["error", 2],
     }
 };
