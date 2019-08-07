@@ -41,7 +41,6 @@ x
 
 **Hotwash**
 - Between all the indices and the actual grid numbers, it could become very confusing which functions were returning index numbers vs having to convert them.
-
 - I didn't have as much awareness of what the readline built in CLI stuff was doing in the background.
-
-- s
+- Learned about ESLint
+- Ran into many git issues, lesson in version control

@@ -25,13 +25,11 @@ const move = (num, token) => {//when a player chooses which spot they want to pl
 
 const checkForWin = (grid) => {//check to see if one of the winning combinations is on the board, returns boolean
   let winner = false
-  //Do any of the winning combinations in winningCombo match up to th
 	winningCombo.some(combo => {
 		if((grid[combo[0]] === "X" || grid[combo[0]] === "O") && grid[combo[0]] === grid[combo[1]] && grid[combo[1]] === grid[combo[2]]){
       winner = true
     }
 	})
-
   return winner
 }
 
@@ -54,7 +52,6 @@ const availablePlays = (board) => {//returns an array of available open spots on
       available.push(spot)
     }
   })
-
   return available
 }
 
@@ -63,11 +60,11 @@ const randomPlay = (array, testIdx) => {//returns a spot NOT an index
     // console.log("Using random fn", testIdx);
     return array[testIdx]
   } else {
+    //Math.random(), returns a float between 0 and 1
     const randomIdx = (Math.floor(Math.random() * (array.length)))
     return array[randomIdx]
   }
 }
-//Math.random(), returns a float between 0 and 1
 
 //Single Player Unbeatable Mode ===========================
 const winningMove = (currentBoard, token) => {
@@ -81,22 +78,20 @@ const winningMove = (currentBoard, token) => {
       return
     }
   })
-
   return winningSpot
 }
 
-
 const strategicPlay = (currentBoard, isTest) => {//determines best play for O when there is neither defensive or offensive play to be made.
-//if there is no immediate danger, play to win, so O should play the middle if available, otherwise play a positions where two out of the three winning positions are still open
+// If there is no immediate danger, or immediate win, play to win
+// O should play the middle if available, otherwise play a positions where two out of the three winning positions are still open
   const openSpots = availablePlays(currentBoard)
-  const randomIdx = (array) => Math.floor(Math.random() * array.length) //apply this to either corners or edges for a random spot
+  const randomIdx = (array) => Math.floor(Math.random() * array.length)
   let bestMove
 
-  if(isTest){//dependency injection to test any fn requireing random.
+  if(isTest){//dependency injection to test any fn requiring random.
     bestMove = isTest
     return bestMove
   }
-
   if(openSpots.includes(5)){ //take the middle if it's open
     bestMove = 5
     return bestMove
@@ -112,7 +107,6 @@ const strategicPlay = (currentBoard, isTest) => {//determines best play for O wh
     //if the first and last are empty, then return one of those values
     middleCombo.find(combo => {
       if(typeof currentBoard[combo[0]] === "number" && typeof currentBoard[combo[2]] ==="number"){
-
         bestMove = currentBoard[combo[0]]
         return combo
       }
@@ -121,10 +115,8 @@ const strategicPlay = (currentBoard, isTest) => {//determines best play for O wh
   if (!bestMove) {//Even when a draw is inevitable, output a play
     bestMove = openSpots[randomIdx(openSpots)]
   }
-
   return bestMove
 }
-
 
 //Validations ===========================================
 const validateNumbers = (num) => {//player can only enter numbers
@@ -138,7 +130,6 @@ const validatePlay = (num, grid) => {//player can only pick a number that is not
   if((grid[num-1] !== "X" && grid[num-1] !== "O") && (0 < num && num <= grid.length) && validateNumbers(num)){
     return true
   }
-
   return false
 }
 
