@@ -36,6 +36,12 @@ const playerPrompt = (token) => {
   })
 }
 
+const bestPlay = (play) => {
+  const newBoard = game.move(play, "O")
+  console.log(`\n Player O's move: ${play}`)
+  board.displayBoard(newBoard)
+}
+
 //Multplayer mode ==================================
 const multiPlay = () => { //multiplayer mode
   const token = game.currentPlayer(game.currentPlay)
@@ -45,18 +51,18 @@ const multiPlay = () => { //multiplayer mode
 
 //Singleplayer Easy mode ================================
 const singlePlay1 = () => { //single play easy mode
-  gameMode = singlePlay1
   const token = game.currentPlayer(game.currentPlay)
+  gameMode = singlePlay1
   if(token === "X") {
     playerPrompt(token)
   }
   if(token === "O") {
     const openSpots = game.availablePlays(board.standard) //returns an array of all possible plays the computer can make
     const computerMove = game.randomPlay(openSpots) //returns the spot that the computer is placing its token
-    const newBoard = game.move(computerMove, token)
-    console.log(`\n Player O's move: ${computerMove}`)
-
-    board.displayBoard(newBoard)
+    // const newBoard = game.move(computerMove, token)
+    // console.log(`\n Player O's move: ${computerMove}`)
+    // board.displayBoard(newBoard)
+    bestPlay(computerMove)
     if((game.checkForWin(board.standard)) || (game.draw(board.standard))){ //if there is a winner do this:
       return gameOver(token)
     } else { //if there isn't a winner do this
@@ -68,18 +74,12 @@ const singlePlay1 = () => { //single play easy mode
 
 const singlePlay2 = () => { //Unbeatable mode
   const token = game.currentPlayer(game.currentPlay)
-  const bestPlay = (play) => {
-    const newBoard = game.move(play, token)
-    console.log(`\n Player O's move: ${play}`)
-    board.displayBoard(newBoard)
-  }
 
   gameMode = singlePlay2
 
   if(token === "X") {
     playerPrompt(token)
   }
-
   if(token === "O"){
     const openSpots = game.availablePlays(board.standard)
     const offensivePlay = game.winningMove(board.standard, "O")
@@ -117,22 +117,16 @@ const singlePlay3 = () => { //Unbeatable mode
     const defensivePlay = game.winningMove(board.standard, "X")
 
     if(offensivePlay){
-      const newBoard = game.move(offensivePlay, token)
-      console.log(`\n Player O's move: ${offensivePlay}`)
-      board.displayBoard(newBoard)
+      bestPlay(offensivePlay)
       return gameOver(token)
-    } else if(defensivePlay){//if the O is defense, then there is no winner yet
-      const newBoard = game.move(defensivePlay, token)
-      console.log(`\n Player O's move: ${defensivePlay}`)
-      board.displayBoard(newBoard)
+    } else if(defensivePlay){// if the O is defense, then there is no winner yet
+      bestPlay(defensivePlay)
       game.currentPlay++
       singlePlay3()
 
-    } else {//there's no best defense or offense
+    } else {// there's no best defense or offense
       const strategicPlay = game.strategicPlay(board.standard)
-      const newBoard = game.move(strategicPlay, token)
-      console.log(`\n Player O's move: ${strategicPlay}`)
-      board.displayBoard(newBoard)
+      bestPlay(strategicPlay)
       if((game.checkForWin(board.standard)) || (game.draw(board.standard))){
         return gameOver(token)
       }
