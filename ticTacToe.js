@@ -10,7 +10,7 @@ const rl = readline.createInterface({ //rl is the CLI program that outputs in th
 let gameMode //what difficulty is being played
 
 const gameOver = (winner) => {
-  if(!!game.checkForWin(board.standard)){
+  if(game.checkForWin(board.standard)){
     console.log(` Player [${winner}] is the Winner!!!`)
     return rl.close()
   } else if (game.draw(board.standard)){
@@ -111,7 +111,6 @@ const singlePlay3 = () => { //Unbeatable mode
     playerPrompt(token)
   }
   if(token === "O"){
-    const openSpots = game.availablePlays(board.standard)
     const offensivePlay = game.winningMove(board.standard, "O")
     const defensivePlay = game.winningMove(board.standard, "X")
 

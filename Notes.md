@@ -12,19 +12,18 @@ focus on these this week:
 x x o
 o o x
 x    
+- Solve the randomizerFN test (0 is a falsy value)[**resolved**]
 - Clean tests, break them out [**Resolved**]
-* Create a new test file for building tests for the ticTacToe.js
 * Packaging code options (build readme)
-
-[After Above]
-- Solve the randomizerFN test (0 is a falsy value)
 - Refactor game, then set up ESLint, have a run through
 - when you set up ESLint, it should pass, no more than 5 overrides
 - Package ESLint
+
+[After Above]
+- Create a new test file for building tests for ticTacToe.js
 - Make a commit before Refactor, make a commit before ESLint
 - Add instructions for the developer, run the tests, Readline,
 - virtualbox, ubuntu.
-- randomizerfn, think about what you're checking for.
 - delay O's move on single player easy mode. setTimeout
 
 - Do another round of refactoring for the sinplePlay fn.

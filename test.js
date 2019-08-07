@@ -70,18 +70,18 @@ describe('Game play', () => {
   describe('#checkForWin()', () => {
     //Check after every move if someone has won
     it('returns true if there is a winning combination on the board', () => {
-      grid1 = ["X", "X", "X", "O", "O", 6, 7, 8, 9]
-      grid2 = ["X", "O", "O", 4, "X", 6, 7, 8, "X"]
+      const grid1 = ["X", "X", "X", "O", "O", 6, 7, 8, 9]
+      const grid2 = ["X", "O", "O", 4, "X", 6, 7, 8, "X"]
       assert.equal(game.checkForWin(grid1), true)
       assert.equal(game.checkForWin(grid2), true)
     })
     it('returns false if there is no winning combination on the board', () => {
-      grid1 = ["X", "X", "O", "O", "O", "X", "X", 8, 9]
+      const grid1 = ["X", "X", "O", "O", "O", "X", "X", 8, 9]
       assert.equal(game.checkForWin(grid1), false)
     })
 
     it('runs when a board shows none of the winning combinations', () => {
-      grid = ["X", "O", "X", "O", "O", "X", 7, 8, 9]
+      const grid = ["X", "O", "X", "O", "O", "X", 7, 8, 9]
       assert.equal(game.checkForWin(grid), false)
     })
   })
@@ -106,7 +106,7 @@ describe('Game play', () => {
   describe('#availablePlays()', () => {
     //returns the available spots on a grid
     it('returns available spot on the grid',  () => {
-      grid = ["O", 2, "X", 4, "X", 6, "O", 8, "X"]
+      const grid = ["O", 2, "X", 4, "X", 6, "O", 8, "X"]
       assert.deepStrictEqual(game.availablePlays(grid), [2, 4, 6, 8])
     })
   })
