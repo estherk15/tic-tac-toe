@@ -18,7 +18,6 @@ describe('Validations', () => {
   describe('#validateNumbers()', () => {
     it('runs when a number is input value', () => {
       assert.equal(game.validateNumbers(2), true);
-      // assert.equal(game.validateNumbers("single"), false)
     });
     it('fails when a string is input value', () => {
       assert.equal(game.validateNumbers('single'), false);

@@ -1,7 +1,7 @@
 // Anything related to the rules of the game goes here
 const board = require('./board.js');
 
-const winningCombo = [// Remember that these are arrays of index numbers, don't confuse them for grid spots, which start at 1.
+const winningCombo = [// These are arrays of index numbers
   [0, 1, 2],
   [3, 4, 5],
   [6, 7, 8],
@@ -130,11 +130,13 @@ const validateNumbers = (num) => {// player can only enter numbers
   return true;
 };
 
-const validatePlay = (num, grid) => {// player can only pick a number that is not already picked and it has to be a number
-  if ((grid[num-1] !== 'X' && grid[num-1] !== 'O') && (0 < num && num <= grid.length) && validateNumbers(num)) {
-    return true;
-  }
-  return false;
+const validatePlay = (num, grid) => {// boolean
+  // is the number a spot? is it empty? is it a number?
+  const isToken = () => (typeof grid[num-1] === 'number') ? true : false;
+  const isValidSpot = () => (0 < num <= grid.length) ? true : false;
+  const validPlay = isToken() && isValidSpot() && validateNumbers(num);
+
+  return validPlay;
 };
 
 module.exports = {

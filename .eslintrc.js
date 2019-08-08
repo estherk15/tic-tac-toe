@@ -17,6 +17,6 @@ module.exports = {
     },
     "rules": {
       "no-console": 1,
-      "complexity": ["error", 2],
+      "complexity": ["error", 3],
     }
 };
