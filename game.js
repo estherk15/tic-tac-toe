@@ -26,12 +26,14 @@ const move = (num, token) => {
 
 const checkForWin = (grid) => {// returns boolean
   let winner = false;
+
   winningCombo.some((combo) => {
-    if ((grid[combo[0]] === 'X' || grid[combo[0]] === 'O')
-         && grid[combo[0]] === grid[combo[1]]
-         && grid[combo[1]] === grid[combo[2]]) {
-      winner = true;
-    }
+    const currentCombo = combo.map((idx) => grid[idx]);
+    const threeInARow = ((currentCombo[0] === currentCombo[1])
+     && (currentCombo[1] === currentCombo[2]));
+
+    winner = ((typeof currentCombo[0] === 'string') && threeInARow);
+    return winner;
   });
   return winner;
 };
@@ -96,6 +98,7 @@ const strategicPlay = (currentBoard, isTest) => {
     bestMove = isTest;
     return bestMove;
   }
+
   if (openSpots.includes(5)) { // take the middle if it's open
     bestMove = 5;
     return bestMove;
