@@ -8,7 +8,10 @@ This JavaScript program was built through a focus on Test Drive Development. Usi
 
 ## Installation
 
-To begin, fork this repository and clone it into your local drive. Once you clone it, open up your terminal/command line and CD into the folder, enter ```node ticTacToe``` to begin playing!
+In order to play, you will need to have Node.js installed.
+MacOS: 
+
+To begin, fork this repository and clone it into your local drive. Once you clone it, open up your terminal/command line and CD into the folder
 
 ## Using the Application
 

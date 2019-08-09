@@ -18,5 +18,9 @@ module.exports = {
     "rules": {
       "no-console": 1,
       "complexity": ["error", 3],
+      "max-len": ["error", {
+        "ignoreComments": true,
+        "ignoreTrailingComments": true,
+      }]
     }
 };

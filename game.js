@@ -24,6 +24,7 @@ const move = (num, token) => {
   return board.standard;
 };
 
+// Is there a winning combination?
 const checkForWin = (grid) => {// returns boolean
   let winner = false;
 
@@ -31,7 +32,6 @@ const checkForWin = (grid) => {// returns boolean
     const currentCombo = combo.map((idx) => grid[idx]);
     const threeInARow = ((currentCombo[0] === currentCombo[1])
      && (currentCombo[1] === currentCombo[2]));
-
     winner = ((typeof currentCombo[0] === 'string') && threeInARow);
     return winner;
   });
@@ -53,7 +53,7 @@ const draw = (grid) => {
 const availablePlays = (board) => {// returns an array of available open spots
   const available = [];
   board.forEach((spot) => {
-    if (spot !== 'X' && spot !=='O') {
+    if (typeof spot === 'number') {
       available.push(spot);
     }
   });
@@ -62,7 +62,6 @@ const availablePlays = (board) => {// returns an array of available open spots
 
 const randomPlay = (array, testIdx) => {// returns a spot NOT an index
   if (typeof testIdx === 'number') {
-    // console.log("Using random fn", testIdx);
     return array[testIdx];
   } else {
     // Math.random(), returns a float between 0 and 1
@@ -87,40 +86,44 @@ const winningMove = (currentBoard, token) => {
 };
 
 const strategicPlay = (currentBoard, isTest) => {
-// If there is no immediate danger, or immediate win, play to win
-// determines best play for O when there is neither defensive or offensive play to be made.
+// If there is no immediate danger, or immediate win, play to win determines best play for O when there is neither defensive or offensive play to be made.
 // O should play the middle if available, otherwise play a positions where two out of the three winning positions are still open
-  const openSpots = availablePlays(currentBoard);
-  const randomIdx = (array) => Math.floor(Math.random() * array.length);
   let bestMove;
 
-  if (isTest) {// dependency injection to test any fn requiring random.
-    bestMove = isTest;
-    return bestMove;
-  }
+  const openSpots = availablePlays(currentBoard);
+  const randomIdx = (array) => Math.floor(Math.random() * array.length);
+  const diagonalMove = () => ((currentBoard[0] === currentBoard[8]) || (currentBoard[2] === currentBoard[6]));
+  const middleCombo = winningCombo.filter((combo) => combo[1] === 4);
+  // look through all the winning combos involving the middle positions
+  // if the first and last are empty, then return one of those values
+  const playStrategy = () => !isTest && !diagonalMove()
+  const strategy = () => middleCombo.find((combo) => {
+    const boardCombo = combo.map((idx) => currentBoard[idx]);
+    const potWinCombo = () => ((typeof boardCombo[0] === 'number') && (typeof boardCombo[2] ==='number'))
+    if (potWinCombo()) {
+      bestMove = currentBoard[combo[0]];
+      return combo;
+    }
+  });
 
-  if (openSpots.includes(5)) { // take the middle if it's open
-    bestMove = 5;
-    return bestMove;
-  } else if (openSpots.length === 8) { // this might be redundant
-    bestMove = board.corners[randomIdx(board.corners)];
-  } else if ((currentBoard[0] === currentBoard[8]) || currentBoard[2] === currentBoard[6]) { // if any of the opposing diagnols are taken
-    // return the first edge
-    bestMove = board.edges[randomIdx(board.edges)];
-    return bestMove;
-  } else {
-    const middleCombo = winningCombo.filter((combo) => combo[1] === 4);
-    // look through all the winning combos involving the middle positions
-    // if the first and last are empty, then return one of those values
-    middleCombo.find((combo) => {
-      if (typeof currentBoard[combo[0]] === 'number' && typeof currentBoard[combo[2]] ==='number') {
-        bestMove = currentBoard[combo[0]];
-        return combo;
-      }
-    });
-  }
-  if (!bestMove) {// Even when a draw is inevitable, output a play
-    bestMove = openSpots[randomIdx(openSpots)];
+  switch (true) {
+    case !!isTest:
+      bestMove = isTest
+      break;
+    case openSpots.includes(5):
+      bestMove = 5
+      break;
+    case openSpots.length === 8:
+      bestMove = board.corners[randomIdx(board.corners)]
+      break;
+    case diagonalMove():
+      bestMove = board.edges[randomIdx(board.edges)]
+      break;
+    case playStrategy():
+      strategy();
+      break;
+    default:
+      bestMove = openSpots[randomIdx(openSpots)];
   }
   return bestMove;
 };
