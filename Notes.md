@@ -42,3 +42,4 @@ x
 - I didn't have as much awareness of what the readline built in CLI stuff was doing in the background.
 - Learned about ESLint
 - Ran into many git issues, lesson in version control
+- Vagrant and packaging.

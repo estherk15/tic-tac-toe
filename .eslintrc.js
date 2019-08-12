@@ -17,10 +17,10 @@ module.exports = {
     },
     "rules": {
       "no-console": 1,
-      "complexity": ["error", 3],
+      "complexity": ["error", 5],
       "max-len": ["error", {
-        "ignoreComments": true,
         "ignoreTrailingComments": true,
-      }]
+      }],
+
     }
 };
