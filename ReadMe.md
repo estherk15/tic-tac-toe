@@ -9,7 +9,9 @@ This JavaScript program was built through a focus on Test Drive Development. Usi
 ## Installation
 
 In order to play, you will need to have Node.js installed.
-MacOS: 
+MacOS:
+
+Windows: 
 
 To begin, fork this repository and clone it into your local drive. Once you clone it, open up your terminal/command line and CD into the folder
 
