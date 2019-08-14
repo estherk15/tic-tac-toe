@@ -1,7 +1,8 @@
 const board = require('./board.js');
 const game = require('./game.js');
-// const ticTacToe = require('./ticTacToe.js')
+const ticTacToe = require('./ticTacToe.js')
 const assert = require('assert');
+
 
 // Rules of the Game
 describe('Board', () => {
@@ -173,3 +174,19 @@ describe('Game play', () => {
     });
   });
 });
+
+
+describe('startGame()', () => {
+  it('Writes the winner to the console', () => {
+    const outputTest = () => {
+      let storedValue
+      return {
+        test: storedValue,
+        write: storedValue = value
+      };
+    };
+    assert.equal(ticTacToe.startGame(outputTest),'Welcome to the game');
+  });
+});
+
+//given a fn how do you store a value that was passed into it

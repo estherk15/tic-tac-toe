@@ -10,12 +10,27 @@ const rl = readline.createInterface({
 
 let gameMode; // what difficulty is being played
 
-const gameOver = (winner) => {
-  if (game.checkForWin(board.standard)) {
-    console.log(` Player [${winner}] is the Winner!!!`);
+const outputDriver = () => {
+  return {
+    write: (output) => console.log(output)
+  };
+};
+
+
+const gameOver = (currentPlayer, outputDriver) => {
+  const winLoseGame = game.checkForWin(board.standard);
+  const tiedGame = game.draw(board.standard);
+
+  if (winLoseGame) {
+    const message = ` Player [${currentPlayer}] is the Winner!!!`
+    // console.log(` Player [${winner}] is the Winner!!!`);
+    output.write(message)
+
     return rl.close();
-  } else if (game.draw(board.standard)) {
-    console.log('\n It\'s a tie, you\'re both winners! Huzzah!');
+  } else if (tiedGame) {
+    const message = '\n It\'s a tie, you\'re both winners! Huzzah!';
+    // console.log('\n It\'s a tie, you\'re both winners! Huzzah!');
+    output.write(message)
     return rl.close();
   }
 };
@@ -178,11 +193,12 @@ const difficultyMode = () => {
   });
 };
 
-const startGame = () => {
+const startGame = (outputFn) => {
   board.displayBoard(board.standard);
-  console.log('\nPlayer X  ||  Player O \n');
-  console.log('When it is your turn, enter the number in the corresponding\nsquare on the board you want to place your token. For example, \nif you want to place an [X] in the top left corner, you would\ntype 1 on your turn.\n');
-
+  // console.log('\nPlayer X  ||  Player O \n');
+  const msg = ('When it is your turn, enter the number in the corresponding\nsquare on the board you want to place your token. For example, \nif you want to place an [X] in the top left corner, you would\ntype 1 on your turn.\n');
+  const outputDriver = outputFn();
+  outputDriver.write(msg);
   menu();
 };
 
@@ -192,4 +208,9 @@ console.log(`
   Version: 1.0.0
   `);
 
-startGame();
+startGame(outputDriver);
+
+module.exports = {
+  gameOver,
+  startGame,
+};
