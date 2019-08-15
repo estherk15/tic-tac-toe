@@ -12,10 +12,9 @@ let gameMode; // what difficulty is being played
 
 const outputDriver = () => {
   return {
-    write: (output) => console.log(output)
+    write: (output) => console.log(output),
   };
 };
-
 
 const gameOver = (currentPlayer, outputDriver) => {
   const winLoseGame = game.checkForWin(board.standard);
@@ -23,8 +22,8 @@ const gameOver = (currentPlayer, outputDriver) => {
 
   if (winLoseGame) {
     const message = ` Player [${currentPlayer}] is the Winner!!!`
-    // console.log(` Player [${winner}] is the Winner!!!`);
-    output.write(message)
+    // console.log(` Player [${winner}] is the Winner!!!`);;
+    output.write(message);
 
     return rl.close();
   } else if (tiedGame) {
@@ -193,20 +192,28 @@ const difficultyMode = () => {
   });
 };
 
-const startGame = (outputFn) => {
+const startGame = (outputFn, isTest) => {
+  if (isTest) {
+    return;
+  }
+
   board.displayBoard(board.standard);
   // console.log('\nPlayer X  ||  Player O \n');
-  const msg = ('When it is your turn, enter the number in the corresponding\nsquare on the board you want to place your token. For example, \nif you want to place an [X] in the top left corner, you would\ntype 1 on your turn.\n');
-  const outputDriver = outputFn();
-  outputDriver.write(msg);
+  const instructions = ('\nWhen it is your turn, enter the number in the corresponding\nsquare on the board you want to place your token. For example, \nif you want to place an [X] in the top left corner, you would\ntype 1 on your turn.\n');
+  const output = outputDriver();
+  output.write(instructions);
+
   menu();
 };
 
 // Starts the game
-console.log(`
+// ================================================================
+const welcomeMsg = `
   Let's play Tic Tac Toe!
   Version: 1.0.0
-  `);
+  `
+const output = outputDriver();
+output.write(welcomeMsg)
 
 startGame(outputDriver);
 
