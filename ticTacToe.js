@@ -85,7 +85,7 @@ const singlePlay1 = () => { // single play easy mode
   }
 };// singlePlay1
 
-const singlePlay2 = () => { // Unbeatable mode
+const singlePlay2 = () => { // Player can beat with proper strategy
   const token = game.currentPlayer(game.currentPlay);
   gameMode = singlePlay2;
   if (token === 'X') {
