@@ -12,19 +12,16 @@ focus on these this week:
 x x o
 o o x
 x    
+- Solve the randomizerFN test (0 is a falsy value)[**resolved**]
 - Clean tests, break them out [**Resolved**]
-* Create a new test file for building tests for the ticTacToe.js
 * Packaging code options (build readme)
+- when you set up ESLint, no more than 5 overrides
 
 [After Above]
-- Solve the randomizerFN test (0 is a falsy value)
-- Refactor game, then set up ESLint, have a run through
-- when you set up ESLint, it should pass, no more than 5 overrides
-- Package ESLint
+- Create a new test file for building tests for ticTacToe.js
 - Make a commit before Refactor, make a commit before ESLint
 - Add instructions for the developer, run the tests, Readline,
 - virtualbox, ubuntu.
-- randomizerfn, think about what you're checking for.
 - delay O's move on single player easy mode. setTimeout
 
 - Do another round of refactoring for the sinplePlay fn.
@@ -42,7 +39,37 @@ x
 
 **Hotwash**
 - Between all the indices and the actual grid numbers, it could become very confusing which functions were returning index numbers vs having to convert them.
-
 - I didn't have as much awareness of what the readline built in CLI stuff was doing in the background.
+- Learned about ESLint
+- Ran into many git issues, lesson in version control
+- Vagrant and packaging.
 
-- s
+// now
+function startGame() {
+    console.log('welcome to tic tac toe');
+};
+
+
+// desired
+function startGame(outputDriver) {
+    outputDriver.write('welcome to tic tac toe');
+}
+
+// desired test
+describe 'testStartGame' ({
+
+    it '' {
+        outputDriver = function repeater(input) {
+
+            value = input; return value;
+            write = saveValue();
+        }
+
+        output = startGame(outputDriver)
+
+        expect(output.writtenValue).to eq('welcome to tic tac toe')
+    }
+})
+
+// desired game
+outputDriver = function () { write = console.log() } //?
