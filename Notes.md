@@ -43,3 +43,33 @@ x
 - Learned about ESLint
 - Ran into many git issues, lesson in version control
 - Vagrant and packaging.
+
+// now
+function startGame() {
+    console.log('welcome to tic tac toe');
+};
+
+
+// desired
+function startGame(outputDriver) {
+    outputDriver.write('welcome to tic tac toe');
+}
+
+// desired test
+describe 'testStartGame' ({
+
+    it '' {
+        outputDriver = function repeater(input) {
+
+            value = input; return value;
+            write = saveValue();
+        }
+
+        output = startGame(outputDriver)
+
+        expect(output.writtenValue).to eq('welcome to tic tac toe')
+    }
+})
+
+// desired game
+outputDriver = function () { write = console.log() } //?

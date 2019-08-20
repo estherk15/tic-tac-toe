@@ -12,5 +12,8 @@
     "eslint": "^6.2.1",
     "eslint-config-google": "^0.13.0",
     "mocha": "^6.1.4"
+  },
+  "dependencies": {
+    "figlet": "^1.2.3"
   }
 }

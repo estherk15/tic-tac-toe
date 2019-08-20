@@ -1,7 +1,8 @@
 // Anything related to the rules of the game goes here
 const board = require('./board.js');
 
-const winningCombo = [// These are arrays of index numbers
+const winningCombo = [
+  // These are arrays of index numbers
   [0, 1, 2],
   [3, 4, 5],
   [6, 7, 8],
